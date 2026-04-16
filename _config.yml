@@ -1,6 +1,6 @@
 # Site settings
 title: Ice Blog
-SEOTitle: 冰冰洁的博客 | icejiee'blog
+SEOTitle: "冰冰洁的博客 | icejiee'blog"
 header-img: img/post-bg-desk.jpg
 email: icejie_pingan@qq.com
 description: "有啥看啥吧"
@@ -57,7 +57,7 @@ kramdown:
 
 # 评论系统
 # Disqus（https://disqus.com/）
- disqus_username: hanbingbingjie
+disqus_username: hanbingbingjie
 
 # Gitalk
 gitalk:
