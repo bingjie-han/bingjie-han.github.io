@@ -1,42 +1,80 @@
----
-layout: page
-description: "Thinking will not overcome fear but action will."
+﻿---
+layout: default
+description: "Thinking will not overcome fear, but action will."
 ---
 
-{% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-        <div class="post-content-preview">
-            {{ post.content | strip_html | truncate:200 }}
+<section class="home-hero">
+    <div class="hero-copy reveal">
+        <p class="eyebrow">Personal notes, quietly growing</p>
+        <h1>把思考写下来，让生活慢慢结冰成光。</h1>
+        <p class="hero-description">这里是 {{ site.author }} 的个人博客，用来收藏学习笔记、灵感碎片、技术实践和认真生活的证据。</p>
+        <div class="hero-actions">
+            <a class="button primary" href="{{ '/about/' | relative_url }}">认识一下</a>
+            <a class="button ghost" href="{{ '/tags/' | relative_url }}">浏览标签</a>
         </div>
-    </a>
-    <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
-    </p>
-</div>
-<hr>
-{% endfor %}
+    </div>
+    <aside class="hero-card reveal delay-1" aria-label="Profile card">
+        <img class="avatar" src="{{ site.avatar | relative_url }}" alt="{{ site.author }} 的头像">
+        <p class="card-kicker">{{ site.title }}</p>
+        <h2>{{ site.sidebar-about-description }}</h2>
+        <div class="mini-stats">
+            <span><strong>{{ site.posts | size }}</strong> Posts</span>
+            <span><strong>{{ site.tags | size }}</strong> Tags</span>
+        </div>
+    </aside>
+</section>
 
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
+<section class="content-shell">
+    <div class="section-heading">
+        <p class="eyebrow">Latest</p>
+        <h2>最近文章</h2>
+    </div>
+
+    <div class="post-grid">
+        {% for post in paginator.posts %}
+        <article class="post-card reveal">
+            <a href="{{ post.url | relative_url }}">
+                <div class="post-card-meta">{{ post.date | date: "%Y-%m-%d" }} · {{ post.author | default: site.author }}</div>
+                <h3>{{ post.title }}</h3>
+                {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% else %}<p>{{ post.content | strip_html | strip_newlines | truncate: 120 }}</p>{% endif %}
+                <div class="post-card-tags">
+                    {% for tag in post.tags limit:3 %}<span>{{ tag }}</span>{% endfor %}
+                </div>
+            </a>
+        </article>
+        {% else %}
+        <article class="empty-state">
+            <h3>还没有文章</h3>
+            <p>在 `_posts` 目录添加 Markdown 文件后，它们会自动出现在这里。</p>
+        </article>
+        {% endfor %}
+    </div>
+
+    {% if paginator.total_pages > 1 %}
+    <nav class="pagination" aria-label="Pagination">
+        {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">Newer</a>{% endif %}
+        <span>Page {{ paginator.page }} / {{ paginator.total_pages }}</span>
+        {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">Older</a>{% endif %}
+    </nav>
     {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}
+</section>
+
+<section class="content-shell">
+    <div class="feature-strip">
+        <div>
+            <span class="orb"></span>
+            <h3>写作</h3>
+            <p>记录问题、答案和路上的小小顿悟。</p>
+        </div>
+        <div>
+            <span class="orb warm"></span>
+            <h3>学习</h3>
+            <p>把零散知识整理成之后还能找到的线索。</p>
+        </div>
+        <div>
+            <span class="orb deep"></span>
+            <h3>生活</h3>
+            <p>为日常留下柔软、诚实、可回看的片段。</p>
+        </div>
+    </div>
+</section>
