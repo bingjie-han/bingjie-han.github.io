@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "Ice Blog",
   "short_name": "Ice Blog",
   "description": "韩冰洁的个人博客",
@@ -15,7 +15,7 @@
     }
   ],
   "background_color": "#fffaf1",
-  "theme_color": "#103b46",
+  "theme_color": "#0a2f7a",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait-primary"

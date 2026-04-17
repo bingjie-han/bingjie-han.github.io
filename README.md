@@ -1,28 +1,59 @@
-﻿# Ice Blog
+# Ice Blog
 
-这是一个静态优先的个人博客。现在直接双击 `index.html`，或者用 GitHub Pages 托管，都能加载 `css/ice-blog.css` 渲染图形化界面。
+这是一个基于 Jekyll 的个人博客。页面结构、导航、首页文章列表、标签归档都会由 Jekyll 根据 Markdown 自动生成。
 
-## 直接预览
+## 写文章
 
-在文件夹里打开：
+以后新增博客文章，请放到 `_posts` 目录，文件名使用：
 
 ```text
-index.html
+YYYY-MM-DD-title.md
 ```
 
-如果浏览器缓存了旧样式，按 `Ctrl + F5` 强制刷新。
+例如：
 
-## 页面入口
+```text
+_posts/2026-01-22-fear-and-dreams.md
+```
 
-- `index.html`: 首页
-- `about.html`: 关于页面
-- `tags.html`: 标签页
-- `posts/welcome-to-ice-blog.html`: 示例文章
-- `css/ice-blog.css`: 主题样式
-- `img/1.jpg`: 头像
+每篇文章开头需要 front matter：
 
-## 发布到 GitHub Pages
+```yaml
+---
+layout: post
+title: "文章标题"
+subtitle: "一句简短说明"
+date: 2026-01-22 21:20:31 +0800
+author: 韩冰洁
+tags:
+  - 生活
+  - 梦想
+---
+```
 
-把这些文件推送到 `bingjie-han.github.io` 仓库即可。现在不依赖本地 Ruby/Jekyll 构建。
+正文直接写 Markdown。文章会自动出现在首页和 `Tags` 页面。
 
-如果 `git push` 提示 token 错误，需要重新登录 GitHub 或使用 Personal Access Token / SSH key。
+## 重要文件
+
+- `_config.yml`: 站点配置、导航、头像、分页。
+- `_layouts/`: Jekyll 页面模板。
+- `_includes/`: head、导航、页脚。
+- `_posts/`: Markdown 博客文章。
+- `css/ice-blog.css`: 蓝色渐变主题样式。
+- `img/1.jpg`: 首页头像。
+- `img/2.png`: 浏览器标签图标和站点品牌图标。
+
+## 本地预览
+
+```powershell
+bundle install
+bundle exec jekyll serve
+```
+
+然后访问：
+
+```text
+http://127.0.0.1:4000/
+```
+
+不要直接双击 `index.html`，因为它是 Jekyll 模板源文件，需要先构建。

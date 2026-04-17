@@ -1,4 +1,4 @@
-﻿# Site settings
+# Site settings
 title: Ice Blog
 SEOTitle: "冰冰洁的博客 | Ice Blog"
 author: "韩冰洁"
@@ -27,7 +27,7 @@ nav:
 # Social links
 github_username: bingjie-han
 zhihu_username: ""
-RSS: true
+RSS: false
 
 # Build settings
 permalink: /:year/:month/:day/:title/
@@ -61,7 +61,7 @@ featured-tags: true
 featured-condition-size: 0
 
 # Progressive Web App
-chrome-tab-theme-color: "#103b46"
+chrome-tab-theme-color: "#0a2f7a"
 service-worker: true
 
 # Friends
@@ -79,3 +79,4 @@ exclude:
   - package.json
   - Gruntfile.js
   - README.md
+  - posts

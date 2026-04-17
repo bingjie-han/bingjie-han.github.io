@@ -1,4 +1,4 @@
-﻿<head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,8 @@
     <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.SEOTitle | default: site.title }}{% endif %}</title>
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
     <link rel="manifest" href="{{ '/pwa/manifest.json' | relative_url }}">
-    <link rel="icon" href="{{ '/pwa/icons/pwa_icon_128.png' | relative_url }}" type="image/png">
-    <link rel="apple-touch-icon" href="{{ '/pwa/icons/pwa_icon_512.png' | relative_url }}">
+    <link rel="icon" href="{{ '/img/2.png' | relative_url }}" type="image/png">
+    <link rel="shortcut icon" href="{{ '/img/2.png' | relative_url }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ '/img/2.png' | relative_url }}">
     <link rel="stylesheet" href="{{ '/css/ice-blog.css' | relative_url }}">
 </head>
