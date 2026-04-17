@@ -37,8 +37,8 @@
     }
 
     function targetCount() {
-      var raw = Math.floor((size.width * size.height) / (reduceMotion ? 42000 : 9500));
-      return Math.min(reduceMotion ? 48 : 220, Math.max(reduceMotion ? 22 : 96, raw));
+      var raw = Math.floor((size.width * size.height) / (reduceMotion ? 68000 : 18500));
+      return Math.min(reduceMotion ? 24 : 96, Math.max(reduceMotion ? 10 : 36, raw));
     }
 
     function makeFlake(initial) {

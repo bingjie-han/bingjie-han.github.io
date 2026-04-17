@@ -3,7 +3,7 @@ title: Ice Blog
 SEOTitle: "冰冰洁的博客 | Ice Blog"
 author: "韩冰洁"
 email: icejie_pingan@qq.com
-description: "把日常观察、学习笔记和小小灵感认真收好。"
+description: "随便写写"
 keyword: "韩冰洁, Ice Blog, 个人博客, Jekyll"
 lang: zh-CN
 url: "https://bingjie-han.github.io"
@@ -13,12 +13,14 @@ github_repo: "https://github.com/bingjie-han/bingjie-han.github.io"
 # Profile
 avatar: /img/1.jpg
 sidebar: true
-sidebar-about-description: "慢慢写，认真生活。"
+sidebar-about-description: "過過過什么都過"
 
 # Navigation
 nav:
   - title: Home
     url: /
+  - title: Blog
+    url: /blog/
   - title: About
     url: /about/
   - title: Tags

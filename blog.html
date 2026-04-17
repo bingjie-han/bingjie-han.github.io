@@ -1,0 +1,95 @@
+---
+title: Blog
+layout: default
+description: "所有文章、笔记和阶段性想法都会在这里汇集。"
+permalink: /blog/
+---
+
+<section class="page-hero compact blog-hero">
+    <div class="blog-hero-copy reveal">
+        <p class="eyebrow">Ice Archive</p>
+        <h1>Blog</h1>
+        <p class="hero-description">把每一次学习、观察和表达，都整理成可以慢慢回看的冰蓝坐标。</p>
+    </div>
+    <div class="blog-hero-panel reveal delay-1" aria-label="Blog overview">
+        <div>
+            <span>{{ site.posts | size }}</span>
+            <p>Articles</p>
+        </div>
+        <div>
+            <span>{{ site.tags | size }}</span>
+            <p>Tags</p>
+        </div>
+        <div>
+            <span>{{ site.time | date: "%Y" }}</span>
+            <p>Updated</p>
+        </div>
+    </div>
+</section>
+
+<section class="content-shell blog-shell">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Notebook</p>
+            <h2>文章目录</h2>
+        </div>
+        <a class="button ghost" href="{{ '/tags/' | relative_url }}">按标签浏览</a>
+    </div>
+
+    {% assign featured_post = site.posts | first %}
+    {% if featured_post %}
+    <article class="blog-featured reveal">
+        <div>
+            <p class="eyebrow">Latest Post</p>
+            <h2><a href="{{ featured_post.url | relative_url }}">{{ featured_post.title }}</a></h2>
+            {% if featured_post.subtitle %}
+            <p>{{ featured_post.subtitle }}</p>
+            {% else %}
+            <p>{{ featured_post.excerpt | strip_html | strip_newlines | truncate: 150 }}</p>
+            {% endif %}
+            <div class="post-card-tags">
+                {% for tag in featured_post.tags limit:4 %}<span>{{ tag }}</span>{% endfor %}
+            </div>
+        </div>
+        <a class="button primary" href="{{ featured_post.url | relative_url }}">阅读最新文章</a>
+    </article>
+    {% endif %}
+
+    <div class="blog-layout">
+        <aside class="blog-sidebar" aria-label="Blog filters">
+            <p class="eyebrow">Topics</p>
+            <h3>标签索引</h3>
+            <div class="blog-tag-pills">
+                {% for tag in site.tags %}
+                <a href="{{ '/tags/' | relative_url }}#{{ tag[0] | replace: ' ', '-' }}">{{ tag[0] }} <span>{{ tag[1].size }}</span></a>
+                {% else %}
+                <span>暂无标签</span>
+                {% endfor %}
+            </div>
+        </aside>
+
+        <div class="blog-timeline">
+            {% for post in site.posts %}
+            <a class="blog-post-row reveal" href="{{ post.url | relative_url }}">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+                <div>
+                    <h3>{{ post.title }}</h3>
+                    {% if post.subtitle %}
+                    <p>{{ post.subtitle }}</p>
+                    {% else %}
+                    <p>{{ post.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
+                    {% endif %}
+                    <div class="post-card-tags">
+                        {% for tag in post.tags limit:3 %}<span>{{ tag }}</span>{% endfor %}
+                    </div>
+                </div>
+            </a>
+            {% else %}
+            <article class="empty-state">
+                <h3>还没有文章</h3>
+                <p>把 Markdown 文件放进 `_posts` 目录后，它们会自动出现在这里。</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
