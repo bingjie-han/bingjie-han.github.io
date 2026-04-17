@@ -1,30 +1,41 @@
-﻿---
-layout: page
-title: "About"
-eyebrow: "Profile"
-description: "关于这个博客，也关于正在慢慢展开的我。"
-permalink: /about/
----
-
-<div class="profile-block">
-    <img class="profile-avatar" src="{{ site.avatar | relative_url }}" alt="{{ site.author }} 的头像">
-    <div>
-        <p class="eyebrow">Hello</p>
-        <h2>我是 {{ site.author }}。</h2>
-        <p>这里是我的个人博客 Ice Blog。我会把学习笔记、技术实践、生活观察和阶段性的想法放在这里，慢慢沉淀成一个可以回头看的知识角落。</p>
-    </div>
-</div>
-
-## 这个博客会写什么
-
-- 学习过程中踩过的坑、解决方案和复盘。
-- 值得收藏的工具、方法和阅读笔记。
-- 一些关于生活、成长和表达的记录。
-
-## 为什么要写
-
-写作能让模糊的想法变清楚，也能让走过的路留下坐标。这个博客不追求一下子很完整，但会尽量保持真诚、清晰和持续更新。
-
-## 找到我
-
-如果你想交流，可以通过 [GitHub](https://github.com/{{ site.github_username }}) 或邮件 `{{ site.email }}` 找到我。
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="关于 Ice Blog 和韩冰洁">
+  <meta name="theme-color" content="#103b46">
+  <title>About · Ice Blog</title>
+  <link rel="stylesheet" href="css/ice-blog.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="brand" href="index.html"><span class="brand-mark">I</span><span class="brand-text">Ice Blog</span></a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button>
+    <div class="nav-links" id="site-menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="tags.html">Tags</a></div>
+  </nav>
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Profile</p>
+      <h1>About</h1>
+      <p class="hero-description">关于这个博客，也关于正在慢慢展开的我。</p>
+    </section>
+    <section class="content-shell">
+      <article class="prose page-prose">
+        <div class="profile-block">
+          <img class="profile-avatar" src="img/1.jpg" alt="韩冰洁的头像">
+          <div><p class="eyebrow">Hello</p><h2>我是韩冰洁。</h2><p>这里是我的个人博客 Ice Blog。我会把学习笔记、技术实践、生活观察和阶段性的想法放在这里，慢慢沉淀成一个可以回头看的知识角落。</p></div>
+        </div>
+        <h2>这个博客会写什么</h2>
+        <ul><li>学习过程中踩过的坑、解决方案和复盘。</li><li>值得收藏的工具、方法和阅读笔记。</li><li>一些关于生活、成长和表达的记录。</li></ul>
+        <h2>为什么要写</h2>
+        <p>写作能让模糊的想法变清楚，也能让走过的路留下坐标。这个博客不追求一下子很完整，但会尽量保持真诚、清晰和持续更新。</p>
+        <h2>找到我</h2>
+        <p>如果你想交流，可以通过 <a href="https://github.com/bingjie-han" target="_blank" rel="noopener">GitHub</a> 或邮件 <code>icejie_pingan@qq.com</code> 找到我。</p>
+      </article>
+    </section>
+  </main>
+  <footer class="site-footer"><p class="copyright">Copyright &copy; 2026 Ice Blog.</p></footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

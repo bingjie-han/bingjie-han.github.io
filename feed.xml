@@ -1,30 +1,18 @@
----
-layout: null
----
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml" />
-    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
-    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% for post in site.posts limit:10 %}
-      <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
-        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
-        {% for tag in post.tags %}
-        <category>{{ tag | xml_escape }}</category>
-        {% endfor %}
-        {% for cat in post.categories %}
-        <category>{{ cat | xml_escape }}</category>
-        {% endfor %}
-      </item>
-    {% endfor %}
+    <title>Ice Blog</title>
+    <description>韩冰洁的个人博客</description>
+    <link>https://bingjie-han.github.io/</link>
+    <atom:link href="https://bingjie-han.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>欢迎来到 Ice Blog</title>
+      <description>一个重新整理后的个人博客起点。</description>
+      <pubDate>Thu, 16 Apr 2026 21:00:00 +0800</pubDate>
+      <link>https://bingjie-han.github.io/posts/welcome-to-ice-blog.html</link>
+      <guid isPermaLink="true">https://bingjie-han.github.io/posts/welcome-to-ice-blog.html</guid>
+      <category>博客</category>
+      <category>记录</category>
+    </item>
   </channel>
 </rss>

@@ -1,44 +1,28 @@
 ﻿# Ice Blog
 
-这是一个基于 Jekyll 的个人博客，已经整理为独立的 Ice Blog 主题。
+这是一个静态优先的个人博客。现在直接双击 `index.html`，或者用 GitHub Pages 托管，都能加载 `css/ice-blog.css` 渲染图形化界面。
 
-## 本地运行
+## 直接预览
 
-```bash
-bundle install
-bundle exec jekyll serve
-```
-
-打开 `http://127.0.0.1:4000/` 预览。
-
-## 写文章
-
-在 `_posts` 目录新增 Markdown 文件，文件名格式建议为：
+在文件夹里打开：
 
 ```text
-YYYY-MM-DD-title.md
+index.html
 ```
 
-文章头信息示例：
+如果浏览器缓存了旧样式，按 `Ctrl + F5` 强制刷新。
 
-```yaml
----
-layout: post
-title: "文章标题"
-subtitle: "一句简短说明"
-date: 2026-04-16 21:00:00 +0800
-author: 韩冰洁
-tags:
-  - 学习
-  - 生活
----
-```
+## 页面入口
 
-## 主要文件
+- `index.html`: 首页
+- `about.html`: 关于页面
+- `tags.html`: 标签页
+- `posts/welcome-to-ice-blog.html`: 示例文章
+- `css/ice-blog.css`: 主题样式
+- `img/1.jpg`: 头像
 
-- `_config.yml`: 站点信息、头像、导航、分页和 PWA 配置。
-- `_layouts/`: 页面和文章模板。
-- `_includes/`: head、导航、页脚。
-- `css/ice-blog.css`: 新主题样式。
-- `_posts/`: 博客文章。
-- `sw.js`: 离线缓存 service worker。
+## 发布到 GitHub Pages
+
+把这些文件推送到 `bingjie-han.github.io` 仓库即可。现在不依赖本地 Ruby/Jekyll 构建。
+
+如果 `git push` 提示 token 错误，需要重新登录 GitHub 或使用 Personal Access Token / SSH key。

@@ -1,80 +1,101 @@
-﻿---
-layout: default
-description: "Thinking will not overcome fear, but action will."
----
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="韩冰洁的个人博客 Ice Blog">
+  <meta name="theme-color" content="#103b46">
+  <title>冰冰洁的博客 | Ice Blog</title>
+  <link rel="manifest" href="pwa/manifest.json">
+  <link rel="icon" href="pwa/icons/pwa_icon_128.png" type="image/png">
+  <link rel="apple-touch-icon" href="pwa/icons/pwa_icon_512.png">
+  <link rel="stylesheet" href="css/ice-blog.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="brand" href="index.html" aria-label="Ice Blog home">
+      <span class="brand-mark">I</span>
+      <span class="brand-text">Ice Blog</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-menu">
+      <span></span><span></span>
+    </button>
+    <div class="nav-links" id="site-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="tags.html">Tags</a>
+      <a href="feed.xml">RSS</a>
+    </div>
+  </nav>
 
-<section class="home-hero">
-    <div class="hero-copy reveal">
+  <main id="main-content">
+    <section class="home-hero">
+      <div class="hero-copy reveal">
         <p class="eyebrow">Personal notes, quietly growing</p>
         <h1>把思考写下来，让生活慢慢结冰成光。</h1>
-        <p class="hero-description">这里是 {{ site.author }} 的个人博客，用来收藏学习笔记、灵感碎片、技术实践和认真生活的证据。</p>
+        <p class="hero-description">这里是韩冰洁的个人博客，用来收藏学习笔记、灵感碎片、技术实践和认真生活的证据。</p>
         <div class="hero-actions">
-            <a class="button primary" href="{{ '/about/' | relative_url }}">认识一下</a>
-            <a class="button ghost" href="{{ '/tags/' | relative_url }}">浏览标签</a>
+          <a class="button primary" href="about.html">认识一下</a>
+          <a class="button ghost" href="tags.html">浏览标签</a>
         </div>
-    </div>
-    <aside class="hero-card reveal delay-1" aria-label="Profile card">
-        <img class="avatar" src="{{ site.avatar | relative_url }}" alt="{{ site.author }} 的头像">
-        <p class="card-kicker">{{ site.title }}</p>
-        <h2>{{ site.sidebar-about-description }}</h2>
+      </div>
+      <aside class="hero-card reveal delay-1" aria-label="Profile card">
+        <img class="avatar" src="img/1.jpg" alt="韩冰洁的头像">
+        <p class="card-kicker">Ice Blog</p>
+        <h2>慢慢写，认真生活。</h2>
         <div class="mini-stats">
-            <span><strong>{{ site.posts | size }}</strong> Posts</span>
-            <span><strong>{{ site.tags | size }}</strong> Tags</span>
+          <span><strong>1</strong> Posts</span>
+          <span><strong>2</strong> Tags</span>
         </div>
-    </aside>
-</section>
+      </aside>
+    </section>
 
-<section class="content-shell">
-    <div class="section-heading">
-        <p class="eyebrow">Latest</p>
-        <h2>最近文章</h2>
-    </div>
-
-    <div class="post-grid">
-        {% for post in paginator.posts %}
+    <section class="content-shell">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Latest</p>
+          <h2>最近文章</h2>
+        </div>
+      </div>
+      <div class="post-grid">
         <article class="post-card reveal">
-            <a href="{{ post.url | relative_url }}">
-                <div class="post-card-meta">{{ post.date | date: "%Y-%m-%d" }} · {{ post.author | default: site.author }}</div>
-                <h3>{{ post.title }}</h3>
-                {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% else %}<p>{{ post.content | strip_html | strip_newlines | truncate: 120 }}</p>{% endif %}
-                <div class="post-card-tags">
-                    {% for tag in post.tags limit:3 %}<span>{{ tag }}</span>{% endfor %}
-                </div>
-            </a>
+          <a href="posts/welcome-to-ice-blog.html">
+            <div class="post-card-meta">2026-04-16 · 韩冰洁</div>
+            <h3>欢迎来到 Ice Blog</h3>
+            <p>一个重新整理后的个人博客起点。以后学习笔记、技术实践和生活观察都会慢慢放在这里。</p>
+            <div class="post-card-tags"><span>博客</span><span>记录</span></div>
+          </a>
         </article>
-        {% else %}
-        <article class="empty-state">
-            <h3>还没有文章</h3>
-            <p>在 `_posts` 目录添加 Markdown 文件后，它们会自动出现在这里。</p>
+        <article class="post-card reveal delay-1 decorative-card">
+          <a href="about.html">
+            <div class="post-card-meta">Profile · About</div>
+            <h3>关于这个小站</h3>
+            <p>它不只是一个文章列表，也是一块认真整理生活和想法的地方。</p>
+            <div class="post-card-tags"><span>关于</span><span>生活</span></div>
+          </a>
         </article>
-        {% endfor %}
-    </div>
+      </div>
+    </section>
 
-    {% if paginator.total_pages > 1 %}
-    <nav class="pagination" aria-label="Pagination">
-        {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">Newer</a>{% endif %}
-        <span>Page {{ paginator.page }} / {{ paginator.total_pages }}</span>
-        {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">Older</a>{% endif %}
-    </nav>
-    {% endif %}
-</section>
+    <section class="content-shell">
+      <div class="feature-strip">
+        <div><span class="orb"></span><h3>写作</h3><p>记录问题、答案和路上的小小顿悟。</p></div>
+        <div><span class="orb warm"></span><h3>学习</h3><p>把零散知识整理成之后还能找到的线索。</p></div>
+        <div><span class="orb deep"></span><h3>生活</h3><p>为日常留下柔软、诚实、可回看的片段。</p></div>
+      </div>
+    </section>
+  </main>
 
-<section class="content-shell">
-    <div class="feature-strip">
-        <div>
-            <span class="orb"></span>
-            <h3>写作</h3>
-            <p>记录问题、答案和路上的小小顿悟。</p>
-        </div>
-        <div>
-            <span class="orb warm"></span>
-            <h3>学习</h3>
-            <p>把零散知识整理成之后还能找到的线索。</p>
-        </div>
-        <div>
-            <span class="orb deep"></span>
-            <h3>生活</h3>
-            <p>为日常留下柔软、诚实、可回看的片段。</p>
-        </div>
+  <footer class="site-footer">
+    <div class="footer-card">
+      <div><p class="footer-kicker">Thanks for reading</p><h2>愿这些文字，在某个时刻帮你停一下。</h2></div>
+      <div class="footer-links"><a href="https://github.com/bingjie-han" target="_blank" rel="noopener">GitHub</a><a href="mailto:icejie_pingan@qq.com">Email</a><a href="feed.xml">RSS</a></div>
     </div>
-</section>
+    <div class="friend-row"><span>Links</span><a href="https://github.com/bingjie-han" target="_blank" rel="noopener">GitHub</a><a href="https://developer.apple.com/" target="_blank" rel="noopener">Apple Developer</a></div>
+    <p class="copyright">Copyright &copy; 2026 Ice Blog. Static first, Jekyll ready.</p>
+  </footer>
+
+  <script src="js/site.js"></script>
+</body>
+</html>

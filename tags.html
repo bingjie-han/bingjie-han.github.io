@@ -1,34 +1,30 @@
-﻿---
-title: Tags
-layout: default
-description: "按标签找到相似的文章。"
-permalink: /tags/
----
-
-<section class="page-hero compact">
-    <p class="eyebrow">Archive</p>
-    <h1>Tags</h1>
-    <p class="hero-description">每个标签都是一条线索，把相关的想法串起来。</p>
-</section>
-
-<section class="content-shell">
-    <div class="tag-cloud">
-        {% for tag in site.tags %}
-        <a href="#{{ tag[0] | replace: ' ', '-' }}" style="--weight: {{ tag[1].size }}">{{ tag[0] }} <span>{{ tag[1].size }}</span></a>
-        {% endfor %}
-    </div>
-
-    <div class="tag-list">
-        {% for tag in site.tags %}
-        <section class="tag-section" id="{{ tag[0] | replace: ' ', '-' }}">
-            <h2>{{ tag[0] }}</h2>
-            {% for post in tag[1] %}
-            <a class="archive-item" href="{{ post.url | relative_url }}">
-                <span>{{ post.date | date: "%Y-%m-%d" }}</span>
-                <strong>{{ post.title }}</strong>
-            </a>
-            {% endfor %}
-        </section>
-        {% endfor %}
-    </div>
-</section>
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ice Blog 标签归档">
+  <meta name="theme-color" content="#103b46">
+  <title>Tags · Ice Blog</title>
+  <link rel="stylesheet" href="css/ice-blog.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="brand" href="index.html"><span class="brand-mark">I</span><span class="brand-text">Ice Blog</span></a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button>
+    <div class="nav-links" id="site-menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="tags.html">Tags</a></div>
+  </nav>
+  <main>
+    <section class="page-hero compact"><p class="eyebrow">Archive</p><h1>Tags</h1><p class="hero-description">每个标签都是一条线索，把相关的想法串起来。</p></section>
+    <section class="content-shell">
+      <div class="tag-cloud"><a href="#博客" style="--weight: 1">博客 <span>1</span></a><a href="#记录" style="--weight: 1">记录 <span>1</span></a></div>
+      <div class="tag-list">
+        <section class="tag-section" id="博客"><h2>博客</h2><a class="archive-item" href="posts/welcome-to-ice-blog.html"><span>2026-04-16</span><strong>欢迎来到 Ice Blog</strong></a></section>
+        <section class="tag-section" id="记录"><h2>记录</h2><a class="archive-item" href="posts/welcome-to-ice-blog.html"><span>2026-04-16</span><strong>欢迎来到 Ice Blog</strong></a></section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><p class="copyright">Copyright &copy; 2026 Ice Blog.</p></footer>
+  <script src="js/site.js"></script>
+</body>
+</html>
