@@ -1,8 +1,8 @@
-﻿<footer class="site-footer">
+<footer class="site-footer">
     <div class="footer-card">
         <div>
             <p class="footer-kicker">Thanks for reading</p>
-            <h2>愿这些文字，在某个时刻帮你停一下。</h2>
+            <h2>随便写写</h2>
         </div>
         <div class="footer-links">
             {% if site.github_username %}<a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
@@ -18,6 +18,8 @@
     {% endif %}
     <p class="copyright">Copyright &copy; {{ site.time | date: '%Y' }} {{ site.title }}. Built with Jekyll.</p>
 </footer>
+<canvas id="snow-canvas" aria-hidden="true"></canvas>
+<script src="{{ '/js/snow.js' | relative_url }}"></script>
 
 {% if site.service-worker %}
 <script>

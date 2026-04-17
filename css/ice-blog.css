@@ -33,10 +33,10 @@ body {
     font-family: var(--font-body);
     line-height: 1.75;
     background:
-        radial-gradient(circle at 12% 8%, rgba(190, 235, 255, 0.82), transparent 28rem),
-        radial-gradient(circle at 84% 10%, rgba(82, 170, 255, 0.34), transparent 30rem),
-        radial-gradient(circle at 50% 92%, rgba(230, 248, 255, 0.96), transparent 34rem),
-        linear-gradient(135deg, #f8fdff 0%, #e7f6ff 34%, #bfe5ff 68%, #7fc8ff 100%);
+        radial-gradient(circle at 18% 6%, rgba(235, 250, 255, 0.94), transparent 20rem),
+        radial-gradient(circle at 84% 14%, rgba(80, 177, 255, 0.42), transparent 28rem),
+        radial-gradient(circle at 46% 88%, rgba(213, 244, 255, 0.9), transparent 38rem),
+        linear-gradient(145deg, #f8fdff 0%, #dff4ff 28%, #a9dcff 58%, #4aa8ff 100%);
     overflow-x: hidden;
 }
 
@@ -74,6 +74,15 @@ body::after {
     border-radius: 999px;
     background: conic-gradient(from 120deg, rgba(205, 242, 255, 0.55), rgba(126, 207, 255, 0.24), rgba(70, 151, 255, 0.18), rgba(225, 250, 255, 0.5));
     filter: blur(10px);
+}
+
+#snow-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
 }
 
 img {
@@ -242,6 +251,7 @@ main,
     isolation: isolate;
     cursor: default;
     transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), filter 0.42s ease, letter-spacing 0.42s ease;
+    font-size: clamp(86px, 15vw, 190px);
 }
 
 .welcome-title::before {
@@ -636,7 +646,7 @@ main,
 
 .profile-block {
     display: grid;
-    grid-template-columns: 180px 1fr;
+    grid-template-columns: 1fr;
     gap: 28px;
     align-items: center;
     margin-bottom: 30px;
@@ -940,6 +950,10 @@ main,
     .page-hero h1,
     .post-hero h1 {
         font-size: clamp(42px, 16vw, 68px);
+    }
+
+    .welcome-title {
+        font-size: clamp(72px, 22vw, 116px);
     }
 
     .content-shell,
