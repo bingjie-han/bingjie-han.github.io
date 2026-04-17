@@ -253,7 +253,7 @@ main,
     isolation: isolate;
     cursor: default;
     transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), filter 0.42s ease, letter-spacing 0.42s ease;
-    font-size: clamp(86px, 15vw, 190px);
+    font-size: clamp(118px, 18vw, 260px);
 }
 
 .welcome-title::before {
@@ -1156,7 +1156,7 @@ main,
     }
 
     .welcome-title {
-        font-size: clamp(72px, 22vw, 116px);
+        font-size: clamp(88px, 27vw, 150px);
     }
 
     .content-shell,
