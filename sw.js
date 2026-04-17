@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'ice-blog-jekyll-v6';
+const CACHE_VERSION = 'ice-blog-jekyll-v7';
 const PRECACHE_URLS = [
   './',
   './blog/',
@@ -6,6 +6,7 @@ const PRECACHE_URLS = [
   './css/ice-blog.css',
   './js/snow.js',
   './img/1.jpg',
+  './img/fear-and-dreams.jpg',
   './pwa/icons/pwa_icon_128.png',
   './pwa/icons/pwa_icon_512.png'
 ];
