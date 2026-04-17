@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'ice-blog-jekyll-v3';
+const CACHE_VERSION = 'ice-blog-jekyll-v5';
 const PRECACHE_URLS = [
   './',
   './offline.html',
@@ -28,18 +28,26 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
+  const request = event.request;
+  const isFreshAsset = request.mode === 'navigate' || ['document', 'script', 'style'].includes(request.destination);
+
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const network = fetch(event.request)
+    caches.match(request).then((cached) => {
+      const network = fetch(request)
         .then((response) => {
-          if (response && response.ok && new URL(event.request.url).origin === self.location.origin) {
+          if (response && response.ok && new URL(request.url).origin === self.location.origin) {
             const copy = response.clone();
-            caches.open(CACHE_VERSION).then((cache) => cache.put(event.request, copy));
+            caches.open(CACHE_VERSION).then((cache) => cache.put(request, copy));
           }
           return response;
         })
-        .catch(() => cached || caches.match('./offline.html'));
-      return cached || network;
+        .catch(() => {
+          if (cached) return cached;
+          if (request.mode === 'navigate') return caches.match('./offline.html');
+          return Response.error();
+        });
+
+      return isFreshAsset ? network : (cached || network);
     })
   );
 });

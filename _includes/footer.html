@@ -19,7 +19,7 @@
     <p class="copyright">Copyright &copy; {{ site.time | date: '%Y' }} {{ site.title }}. Built with Jekyll.</p>
 </footer>
 <canvas id="snow-canvas" aria-hidden="true"></canvas>
-<script src="{{ '/js/snow.js' | relative_url }}"></script>
+<script src="{{ '/js/snow.js' | relative_url }}" defer></script>
 
 {% if site.service-worker %}
 <script>

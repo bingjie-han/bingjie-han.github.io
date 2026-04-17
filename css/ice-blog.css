@@ -79,10 +79,12 @@ body::after {
 #snow-canvas {
     position: fixed;
     inset: 0;
-    z-index: 3;
+    z-index: 18;
     width: 100vw;
     height: 100vh;
+    opacity: 0.98;
     pointer-events: none;
+    filter: drop-shadow(0 0 8px rgba(42, 135, 255, 0.38));
 }
 
 img {
