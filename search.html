@@ -1,0 +1,47 @@
+﻿---
+title: Search
+layout: default
+description: "搜索博客中的文章、标签和内容。"
+permalink: /search/
+---
+
+<section class="page-hero compact search-hero">
+    <div class="reveal">
+        <p class="eyebrow">Index</p>
+        <h1>Search</h1>
+        <p class="hero-description">搜索博客中的文章、标签和内容。</p>
+    </div>
+</section>
+
+<section class="content-shell search-shell">
+    <div class="search-bar-wrap">
+        <svg class="search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder="输入关键词搜索文章..."
+            autocomplete="off"
+            aria-label="搜索文章"
+        >
+    </div>
+
+    <div id="search-stats" class="search-stats" aria-live="polite"></div>
+
+    <div id="search-results" class="search-results">
+        <div class="search-hint">
+            <p>输入关键词开始搜索</p>
+            <p class="search-hint-tags">
+                试试:
+                <a class="search-chip" href="?q=博客">博客</a>
+                <a class="search-chip" href="?q=生活">生活</a>
+                <a class="search-chip" href="?q=梦想">梦想</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<script src="{{ '/js/search.js' | relative_url }}" defer></script>

@@ -21,10 +21,12 @@ nav:
     url: /
   - title: Blog
     url: /blog/
-  - title: About
-    url: /about/
   - title: Tags
     url: /tags/
+  - title: Search
+    url: /search/
+  - title: About
+    url: /about/
 
 # Social links
 github_username: bingjie-han
@@ -79,6 +81,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - package.json
-  - Gruntfile.js
   - README.md
-  - posts
