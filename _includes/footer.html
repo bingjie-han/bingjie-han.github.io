@@ -18,8 +18,10 @@
     {% endif %}
     <p class="copyright">Copyright &copy; {{ site.time | date: '%Y' }} {{ site.title }}. Built with Jekyll.</p>
 </footer>
+{% unless page.layout == 'post' %}
 <canvas id="snow-canvas" aria-hidden="true"></canvas>
 <script src="{{ '/js/snow.js' | relative_url }}" defer></script>
+{% endunless %}
 
 {% if site.service-worker %}
 <script>
