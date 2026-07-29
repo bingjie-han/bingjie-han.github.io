@@ -11,14 +11,10 @@
             "id": "fec061372401ef5d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_posts/sql基础学习-sqli hub.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "sql基础学习-sqli hub"
+              "title": "新标签页"
             }
           }
         ]
@@ -185,13 +181,20 @@
   },
   "active": "fec061372401ef5d",
   "lastOpenFiles": [
+    "_posts/2026-01-22-fear-and-dreams.md",
+    "_posts/2025-04-06-fear-and-dreams.md",
+    "_posts/sql基础学习-sqli hub.md",
+    "_posts/2026-07-28-sql基础学习-sqli-hub.md",
+    "_plugins/image_generator.rb",
+    "_plugins/image_generator.rb.tmp.436.5514b5fde184",
+    "_plugins/obsidian_images.rb",
+    "_plugins/obsidian_images.rb.tmp.436.974242a0317a",
+    "_plugins",
     "_posts/imgs/Pasted image 20260729172334.png",
     "_posts/imgs/Pasted image 20260729172110.png",
     "_posts/imgs/Pasted image 20260729171913.png",
-    "_posts/2026-01-22-fear-and-dreams.md",
     "未命名.base",
     "Pasted image 20260729171737.png",
-    "_posts/sql基础学习-sqli hub.md",
     "_posts/imgs/1.jpg",
     "_posts/2026-04-16-welcome-to-ice-blog.md",
     "pwa/icons/pwa_icon_128.png",

@@ -9,4 +9,4 @@ tags:
   - 梦想
 ---
 
-![Fear And Dreams](_posts/imgs/1.jpg)
+![Fear And Dreams](/imgs/1.jpg)
