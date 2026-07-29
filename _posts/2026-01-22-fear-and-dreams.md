@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Fear And Dreams"
-subtitle: "关于梦想、爱的一次记录。"
-date: 2025-04-06 21:20:31 
-author: 韩冰洁
+title: Fear And Dreams
+subtitle: 关于梦想、爱的一次记录。
+date: 2025-04-06 21:20:31
+author: 冰冰洁
 tags:
   - 生活
   - 梦想
 ---
 
-![Fear And Dreams](/img/fear-and-dreams.jpg?v=20260417)
+![Fear And Dreams](_posts/imgs/1.jpg)
