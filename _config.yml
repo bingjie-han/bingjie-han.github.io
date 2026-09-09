@@ -19,6 +19,8 @@ sidebar-about-description: "過過過什么都過"
 nav:
   - title: Home
     url: /
+  - title: 学习笔记
+    url: /notes/
   - title: Blog
     url: /blog/
   - title: Tags
@@ -38,6 +40,10 @@ permalink: /:year/:month/:day/:title/
 paginate: 6
 paginate_path: "/page:num/"
 markdown: kramdown
+collections:
+  notes:
+    output: true
+    permalink: /notes/:path/
 highlighter: rouge
 plugins:
   - jekyll-paginate
@@ -45,10 +51,24 @@ kramdown:
   input: GFM
   hard_wrap: false
 
-# Comments are disabled until the correct provider credentials are configured.
+# Comments & Likes — powered by Giscus (GitHub Discussions)
 comments:
-  enable: false
+  enable: true
 
+giscus:
+  repo: "bingjie-han/bingjie-han.github.io"
+  repo_id: "R_kgDOSEAVBQ"
+  category: "Comments"         # 分类名需与 giscus.app 所选一致；请用「Open-ended discussion」格式的分类（默认 Announcements 仅维护者可新建讨论，会导致访客首条评论失败）
+  category_id: ""              # TODO 三步后从 giscus.app 复制：① 仓库 Settings→General→Features 开启 Discussions ② 安装 giscus App ③ giscus.app 选分类并复制 category-id
+  mapping: "pathname"
+  reactions_enabled: "1"       # 开启反应（即点赞）
+  emit_metadata: "1"           # 向页面回传评论/反应数据，供独立点赞按钮显示计数
+  input_position: "top"
+  theme: "light"
+  lang: "zh-CN"
+  loading: "lazy"
+
+# Gitalk 已弃用（如要切换回来，自行注册 OAuth 应用）
 gitalk:
   enable: false
   clientID: ""

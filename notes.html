@@ -1,0 +1,57 @@
+---
+layout: default
+title: 学习笔记
+description: "按文件夹分类整理的学习笔记，每个文件夹自动生成一个板块。"
+permalink: /notes/
+---
+
+<section class="page-hero compact">
+    <div class="reveal">
+        <p class="eyebrow">Study Notes</p>
+        <h1>学习笔记</h1>
+        <p class="hero-description">按文件夹分类整理的学习笔记，每个文件夹自动生成一个板块。</p>
+    </div>
+</section>
+
+{% assign note_groups = site.notes | sort: 'date' | reverse | group_by: 'category' %}
+
+<section class="content-shell notes-shell">
+    {% if note_groups.size == 0 %}
+    <article class="empty-state">
+        <h3>还没有学习笔记</h3>
+        <p>在 `_notes` 目录下新建一个分类文件夹（例如 `_notes/SQL注入/`），再把 Markdown 笔记放进去，它就会自动出现在这里。</p>
+    </article>
+    {% else %}
+    <div class="notes-index" aria-label="笔记分类索引">
+        {% for group in note_groups %}
+        <a href="#{{ group.name | replace: ' ', '-' }}">{{ group.name }} <span>{{ group.items.size }}</span></a>
+        {% endfor %}
+    </div>
+
+    <div class="notes-board">
+        {% for group in note_groups %}
+        <section class="note-category" id="{{ group.name | replace: ' ', '-' }}">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Folder</p>
+                    <h2>{{ group.name }}</h2>
+                </div>
+                <span class="note-count">{{ group.items.size }} 篇</span>
+            </div>
+            <div class="note-list">
+                {% for note in group.items %}
+                <a class="note-row reveal" href="{{ note.url | relative_url }}">
+                    <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%Y.%m.%d" }}</time>
+                    <div class="note-row-copy">
+                        <h3>{{ note.title }}</h3>
+                        {% if note.subtitle %}<p>{{ note.subtitle }}</p>{% endif %}
+                    </div>
+                    <span class="note-arrow" aria-hidden="true">→</span>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>

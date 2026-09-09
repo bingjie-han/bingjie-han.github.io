@@ -11,28 +11,30 @@ module ObsidianImages
     priority :low
 
     def generate(site)
-      imgs_dir = File.join(site.source, '_posts', 'imgs')
-      return unless Dir.exist?(imgs_dir)
-
-      # Find all image files in _posts/imgs/
+      # Find all image files in _posts/imgs/ and _notes/imgs/, serving them at /imgs/
       image_extensions = %w[.png .jpg .jpeg .gif .svg .webp .bmp .ico]
-      Dir.foreach(imgs_dir) do |filename|
-        next if filename == '.' || filename == '..'
-        next unless image_extensions.include?(File.extname(filename).downcase)
+      %w[_posts _notes].each do |collection_dir|
+        imgs_dir = File.join(site.source, collection_dir, 'imgs')
+        next unless Dir.exist?(imgs_dir)
 
-        # Create a StaticFile that Jekyll will copy to _site/imgs/
-        static_file = Jekyll::StaticFile.new(
-          site,
-          imgs_dir,        # base directory
-          '',              # subdirectory within base
-          filename         # file name
-        )
-        # Override the destination to be /imgs/ instead of /_posts/imgs/
-        def static_file.destination(dest)
-          File.join(dest, 'imgs', @name)
+        Dir.foreach(imgs_dir) do |filename|
+          next if filename == '.' || filename == '..'
+          next unless image_extensions.include?(File.extname(filename).downcase)
+
+          # Create a StaticFile that Jekyll will copy to _site/imgs/
+          static_file = Jekyll::StaticFile.new(
+            site,
+            imgs_dir,        # base directory
+            '',              # subdirectory within base
+            filename         # file name
+          )
+          # Override the destination to be /imgs/ instead of /_posts/imgs/ or /_notes/imgs/
+          def static_file.destination(dest)
+            File.join(dest, 'imgs', @name)
+          end
+
+          site.static_files << static_file
         end
-
-        site.static_files << static_file
       end
     end
   end

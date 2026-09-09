@@ -32,4 +32,98 @@ layout: default
             {% endif %}
         </nav>
     </div>
+
+    <div class="content-shell post-shell post-engage-shell">
+        <div class="post-engage">
+            <button class="like-button" id="like-button" type="button" aria-label="点赞这篇文章">
+                <span class="like-emoji" aria-hidden="true">👍</span>
+                <span class="like-text">点赞</span>
+                <span class="like-count" id="like-count"></span>
+            </button>
+
+            <section class="comment-section" id="comments" aria-label="评论区">
+                <div class="comment-heading">
+                    <p class="eyebrow">Discussion</p>
+                    <h2>评论区</h2>
+                    <p class="comment-hint">留下你的见解吧，恶语伤人六月寒...</p>
+                </div>
+                {% if site.giscus and site.giscus.category_id != empty %}
+                <div class="giscus"></div>
+                {% else %}
+                <p class="comment-soon"><span class="comment-soon-emoji" aria-hidden="true">💬</span>评论功能即将开启，敬请期待～</p>
+                {% endif %}
+            </section>
+        </div>
+    </div>
 </article>
+
+{% if site.giscus and site.giscus.category_id != empty %}
+<script src="https://giscus.app/client.js"
+        data-repo="{{ site.giscus.repo }}"
+        data-repo-id="{{ site.giscus.repo_id }}"
+        data-category="{{ site.giscus.category }}"
+        data-category-id="{{ site.giscus.category_id }}"
+        data-mapping="{{ site.giscus.mapping | default: 'pathname' }}"
+        data-strict="0"
+        data-reactions-enabled="{{ site.giscus.reactions_enabled | default: '1' }}"
+        data-emit-metadata="{{ site.giscus.emit_metadata | default: '0' }}"
+        data-input-position="{{ site.giscus.input_position | default: 'top' }}"
+        data-theme="{{ site.giscus.theme | default: 'light' }}"
+        data-lang="{{ site.giscus.lang | default: 'zh-CN' }}"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+{% endif %}
+
+<script>
+(function () {
+    var giscusConfigured = {% if site.giscus and site.giscus.category_id != empty %}true{% else %}false{% endif %};
+    var btn = document.getElementById('like-button');
+    if (!btn) return;
+    var countEl = document.getElementById('like-count');
+    var comments = document.getElementById('comments');
+    var section = document.querySelector('.comment-section');
+    var hintEl = null;
+    var hintTimer = null;
+
+    function showHint(text) {
+        if (!hintEl) {
+            hintEl = document.createElement('div');
+            hintEl.className = 'like-hint';
+            document.body.appendChild(hintEl);
+        }
+        hintEl.textContent = text;
+        hintEl.classList.remove('show');
+        void hintEl.offsetWidth; // 重新触发过渡动画
+        hintEl.classList.add('show');
+        if (hintTimer) clearTimeout(hintTimer);
+        hintTimer = setTimeout(function () { hintEl.classList.remove('show'); }, 2600);
+    }
+
+    btn.addEventListener('click', function () {
+        if (comments) comments.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (giscusConfigured) {
+            showHint('在下方评论区的反应栏点一下 👍 即可点赞');
+            if (section) {
+                section.classList.remove('attention');
+                void section.offsetWidth;
+                section.classList.add('attention');
+            }
+        } else {
+            showHint('评论与点赞功能即将开启，敬请期待～');
+        }
+    });
+
+    // 读取 giscus 回传的真实点赞数（依赖 data-emit-metadata="1"）
+    window.addEventListener('message', function (event) {
+        if (event.origin !== 'https://giscus.app') return;
+        var g = event.data && event.data.giscus;
+        if (!g || !g.discussion) return;
+        var d = g.discussion;
+        if (countEl && typeof d.reactionCount === 'number') {
+            countEl.textContent = d.reactionCount > 0 ? d.reactionCount : '';
+        }
+    });
+})();
+</script>

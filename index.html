@@ -10,8 +10,8 @@ description: "这里是冰冰洁的个人博客。"
         <p class="hero-description">这里是冰冰洁的个人博客。</p>
         <div class="hero-actions">
             <a class="button primary" href="{{ '/blog/' | relative_url }}">进入博客</a>
+            <a class="button ghost" href="{{ '/notes/' | relative_url }}">学习笔记</a>
             <a class="button ghost" href="{{ '/about/' | relative_url }}">认识一下</a>
-            <a class="button ghost" href="{{ '/tags/' | relative_url }}">浏览标签</a>
         </div>
     </div>
     <aside class="hero-card reveal delay-1" aria-label="Profile card">
@@ -60,12 +60,4 @@ description: "这里是冰冰洁的个人博客。"
         {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">Older</a>{% endif %}
     </nav>
     {% endif %}
-</section>
-
-<section class="content-shell">
-    <div class="feature-strip">
-        <div><span class="orb"></span><h3>写作</h3><p>记录问题、答案和路上的小小顿悟。</p></div>
-        <div><span class="orb warm"></span><h3>学习</h3><p>把零散知识整理成之后还能找到的线索。</p></div>
-        <div><span class="orb deep"></span><h3>生活</h3><p>为日常留下柔软、诚实、可回看的片段。</p></div>
-    </div>
 </section>
