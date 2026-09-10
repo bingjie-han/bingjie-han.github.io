@@ -61,3 +61,30 @@ description: "这里是冰冰洁的个人博客。"
     </nav>
     {% endif %}
 </section>
+
+<section class="content-shell">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Study Notes</p>
+            <h2>学习笔记</h2>
+        </div>
+        <a class="button ghost" href="{{ '/notes/' | relative_url }}">全部笔记</a>
+    </div>
+
+    {% assign recent_notes = site.notes | sort: 'date' | reverse %}
+    <div class="home-notes">
+        {% for note in recent_notes limit:4 %}
+        <a class="home-note reveal" href="{{ note.url | relative_url }}">
+            <span class="home-note-cat">{{ note.category }}</span>
+            <h3>{{ note.title }}</h3>
+            {% if note.subtitle %}<p>{{ note.subtitle }}</p>{% endif %}
+            <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%Y.%m.%d" }}</time>
+        </a>
+        {% else %}
+        <article class="empty-state">
+            <h3>还没有学习笔记</h3>
+            <p>在 `_notes` 目录新建分类文件夹并放入 Markdown，就会出现在这里。</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
