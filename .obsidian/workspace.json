@@ -37,7 +37,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -90,7 +92,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_posts/sql基础学习-sqli hub.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +101,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "sql基础学习-sqli hub 的反向链接列表"
+              "title": "反向链接"
             }
           },
           {
@@ -165,8 +166,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -179,28 +179,39 @@
       "bases:新建数据库": false
     }
   },
-  "active": "fec061372401ef5d",
+  "active": "ec110a33f19b193e",
   "lastOpenFiles": [
-    "_includes/footer.html.tmp.436.835078dba592",
-    "_posts/2026-01-22-fear-and-dreams.md",
+    "css/ice-blog.css.tmp.26676.c24b96b0bcbc",
+    "css/ice-blog.css.tmp.26676.0c1d443ec2b0",
+    "sw.js.tmp.26676.c5955262c21b",
+    "sw.js.tmp.26676.a90a7270eaf7",
+    "_includes/footer.html.tmp.26676.822a7b27804a",
+    "notes.html.tmp.26676.fd68f69e0009",
+    "search_index.json.tmp.26676.3a2013a801b0",
+    "css/ice-blog.css.tmp.26676.624d70341e33",
+    "index.html.tmp.26676.024a2e2e971c",
+    "index.html.tmp.26676.fa92aac851e0",
+    "css/ice-blog.css.tmp.26676.b173a7a31e6d",
+    "_posts/2026-9-9-新生赛uploadandinject的wp.md",
+    "_notes/文件上传/新生赛uploadandinject的wp.md",
+    "_notes/SQL注入/堆叠注入.md",
+    "_notes/SQL注入/sql基础学习-sqli-lab.md",
+    "_posts/imgs/Pasted image 20260909174928.png",
+    "_posts/imgs/Pasted image 20260909174728.png",
+    "_posts/2026-07-28-sql基础学习-sqli-lab.md",
+    "_posts/imgs/2026-9-9.md",
+    "_posts/2026-8-14-堆叠注入.md",
     "_posts/2025-04-06-fear-and-dreams.md",
+    "_posts/imgs/Pasted image 20260802172225.png",
+    "_posts/imgs/Pasted image 20260802171417.png",
+    "_posts/imgs/Pasted image 20260802162910.png",
+    "_posts/2026-01-22-fear-and-dreams.md",
     "_posts/sql基础学习-sqli hub.md",
-    "_posts/2026-07-28-sql基础学习-sqli-hub.md",
-    "_plugins/image_generator.rb",
-    "_plugins/image_generator.rb.tmp.436.5514b5fde184",
-    "_plugins/obsidian_images.rb",
-    "_plugins/obsidian_images.rb.tmp.436.974242a0317a",
-    "_plugins",
     "_posts/imgs/Pasted image 20260729172334.png",
     "_posts/imgs/Pasted image 20260729172110.png",
     "_posts/imgs/Pasted image 20260729171913.png",
-    "未命名.base",
     "Pasted image 20260729171737.png",
     "_posts/imgs/1.jpg",
-    "_posts/2026-04-16-welcome-to-ice-blog.md",
-    "pwa/icons/pwa_icon_128.png",
-    "img/fear-and-dreams.jpg",
-    "img/2.png",
-    "img/1.jpg"
+    "_posts/2026-04-16-welcome-to-ice-blog.md"
   ]
 }

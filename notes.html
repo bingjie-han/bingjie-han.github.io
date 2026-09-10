@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 学习笔记
-description: "按文件夹分类整理的学习笔记，每个文件夹自动生成一个板块。"
+description: "按文件夹分类整理的学习笔记，点开文件夹查看内容。"
 permalink: /notes/
 ---
 
@@ -9,7 +9,7 @@ permalink: /notes/
     <div class="reveal">
         <p class="eyebrow">Study Notes</p>
         <h1>学习笔记</h1>
-        <p class="hero-description">按文件夹分类整理的学习笔记，每个文件夹自动生成一个板块。</p>
+        <p class="hero-description">按文件夹分类整理，点开文件夹查看里面的笔记。</p>
     </div>
 </section>
 
@@ -22,35 +22,30 @@ permalink: /notes/
         <p>在 `_notes` 目录下新建一个分类文件夹（例如 `_notes/SQL注入/`），再把 Markdown 笔记放进去，它就会自动出现在这里。</p>
     </article>
     {% else %}
-    <div class="notes-index" aria-label="笔记分类索引">
-        {% for group in note_groups %}
-        <a href="#{{ group.name | replace: ' ', '-' }}">{{ group.name }} <span>{{ group.items.size }}</span></a>
-        {% endfor %}
-    </div>
-
     <div class="notes-board">
         {% for group in note_groups %}
-        <section class="note-category" id="{{ group.name | replace: ' ', '-' }}">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow">Folder</p>
-                    <h2>{{ group.name }}</h2>
+        <details class="note-folder">
+            <summary class="note-folder-head">
+                <span class="note-folder-icon" aria-hidden="true">📁</span>
+                <span class="note-folder-name">{{ group.name }}</span>
+                <span class="note-count">{{ group.items.size }}</span>
+                <span class="note-folder-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="note-folder-body">
+                <div class="note-list">
+                    {% for note in group.items %}
+                    <a class="note-row reveal" href="{{ note.url | relative_url }}">
+                        <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%Y.%m.%d" }}</time>
+                        <div class="note-row-copy">
+                            <h3>{{ note.title }}</h3>
+                            {% if note.subtitle %}<p>{{ note.subtitle }}</p>{% endif %}
+                        </div>
+                        <span class="note-arrow" aria-hidden="true">→</span>
+                    </a>
+                    {% endfor %}
                 </div>
-                <span class="note-count">{{ group.items.size }} 篇</span>
             </div>
-            <div class="note-list">
-                {% for note in group.items %}
-                <a class="note-row reveal" href="{{ note.url | relative_url }}">
-                    <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%Y.%m.%d" }}</time>
-                    <div class="note-row-copy">
-                        <h3>{{ note.title }}</h3>
-                        {% if note.subtitle %}<p>{{ note.subtitle }}</p>{% endif %}
-                    </div>
-                    <span class="note-arrow" aria-hidden="true">→</span>
-                </a>
-                {% endfor %}
-            </div>
-        </section>
+        </details>
         {% endfor %}
     </div>
     {% endif %}
