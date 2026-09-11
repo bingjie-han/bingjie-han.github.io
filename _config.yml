@@ -59,7 +59,7 @@ giscus:
   repo: "bingjie-han/bingjie-han.github.io"
   repo_id: "R_kgDOSEAVBQ"
   category: "Comments"         # 分类名需与 giscus.app 所选一致；请用「Open-ended discussion」格式的分类（默认 Announcements 仅维护者可新建讨论，会导致访客首条评论失败）
-  category_id: ""              # TODO 三步后从 giscus.app 复制：① 仓库 Settings→General→Features 开启 Discussions ② 安装 giscus App ③ giscus.app 选分类并复制 category-id
+  category_id: "DIC_kwDOSEAVBc4DFWv9"
   mapping: "pathname"
   reactions_enabled: "1"       # 开启反应（即点赞）
   emit_metadata: "1"           # 向页面回传评论/反应数据，供独立点赞按钮显示计数
