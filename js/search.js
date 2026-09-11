@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
   'use strict';
 
   var SEARCH_INDEX_URL = '/search_index.json';
@@ -14,8 +14,9 @@
   var currentResults = [];
   var debounceTimer = null;
 
-  function loadIndex() {
-    if (loaded || loadError) return;
+  function loadIndex(callback) {
+    if (loaded) { if (callback) callback(); return; }
+    if (loadError) return;
     input.disabled = true;
     input.placeholder = '正在加载搜索索引...';
     fetch(SEARCH_INDEX_URL)
@@ -28,7 +29,7 @@
         loaded = true;
         input.disabled = false;
         input.placeholder = '输入关键词搜索文章...';
-        input.focus();
+        if (callback) { callback(); } else { input.focus(); }
       })
       .catch(function () {
         loadError = true;
@@ -71,6 +72,20 @@
     return score;
   }
 
+  function buildSnippet(content, terms) {
+    var text = (content || '').replace(/\s+/g, ' ').trim();
+    if (!text) return '';
+    var idx = -1;
+    for (var i = 0; i < terms.length; i++) {
+      var pos = text.toLowerCase().indexOf(terms[i].toLowerCase());
+      if (pos !== -1) { idx = pos; break; }
+    }
+    if (idx === -1) return text.substring(0, 160);
+    var start = Math.max(0, idx - 40);
+    var snippet = text.substring(start, start + 160);
+    return (start > 0 ? '…' : '') + snippet + (start + 160 < text.length ? '…' : '');
+  }
+
   function highlightText(text, term) {
     var escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     return text.replace(new RegExp('(' + escaped + ')', 'gi'), '<mark>$1</mark>');
@@ -85,24 +100,39 @@
   }
 
   function buildResultHTML(post, terms) {
+    var isNote = post.type === 'note';
     var titleHighlighted = highlightMultiple(post.title, terms);
+
     var excerptSource = post.subtitle || post.excerpt || '';
+    if (!excerptSource && post.content) {
+      excerptSource = buildSnippet(post.content, terms);
+    }
     var excerptHighlighted = highlightMultiple(excerptSource, terms);
     if (excerptHighlighted.length > 220) {
       excerptHighlighted = excerptHighlighted.substring(0, 200) + '...';
     }
+
+    var tagList = (post.tags || []).slice();
+    if (isNote && post.category) {
+      tagList.unshift(post.category);
+    }
     var tagsHTML = '';
-    if (post.tags && post.tags.length > 0) {
+    if (tagList.length > 0) {
       tagsHTML = '<div class="post-card-tags">';
-      for (var i = 0; i < Math.min(post.tags.length, 4); i++) {
-        tagsHTML += '<span>' + highlightMultiple(post.tags[i], terms) + '</span>';
+      for (var i = 0; i < Math.min(tagList.length, 4); i++) {
+        tagsHTML += '<span>' + highlightMultiple(tagList[i], terms) + '</span>';
       }
       tagsHTML += '</div>';
     }
+
+    var typeLabel = isNote ? '学习笔记' : '文章';
+    var typeClass = isNote ? 'is-note' : 'is-post';
+
     return (
       '<a class="search-result-item reveal" href="' + post.url + '">' +
         '<time datetime="' + post.date + '">' + (post.date || '') + '</time>' +
         '<div>' +
+          '<div class="search-result-head"><span class="search-result-type ' + typeClass + '">' + typeLabel + '</span></div>' +
           '<h3>' + titleHighlighted + '</h3>' +
           '<p>' + excerptHighlighted + '</p>' +
           tagsHTML +
@@ -115,10 +145,10 @@
     selectedIndex = -1;
     if (results.length === 0) {
       statsContainer.textContent = '';
-      resultsContainer.innerHTML = '<article class="empty-state"><h3>没有找到相关文章</h3><p>试试其他关键词，或者浏览<a href=\"/blog/\">文章目录</a>。</p></article>';
+      resultsContainer.innerHTML = '<article class="empty-state"><h3>没有找到相关文章</h3><p>试试其他关键词，或者浏览<a href="/blog/">文章目录</a>。</p></article>';
       return;
     }
-    statsContainer.textContent = '找到 ' + results.length + ' 篇相关文章';
+    statsContainer.textContent = '找到 ' + results.length + ' 篇相关内容';
     var html = '';
     for (var i = 0; i < results.length; i++) {
       html += buildResultHTML(results[i], terms);
@@ -139,8 +169,9 @@
         '<p>输入关键词开始搜索</p>' +
         '<p class="search-hint-tags">' +
           '试试: ' +
-          '<a class="search-chip" href="?q=博客">博客</a>' +
-          '<a class="search-chip" href="?q=生活">生活</a>' +
+          '<a class="search-chip" href="?q=sql注入">sql注入</a>' +
+          '<a class="search-chip" href="?q=文件上传">文件上传</a>' +
+          '<a class="search-chip" href="?q=hackmyvm">hackmyvm</a>' +
           '<a class="search-chip" href="?q=梦想">梦想</a>' +
         '</p>' +
       '</div>'
@@ -166,6 +197,7 @@
         post.title || '',
         post.subtitle || '',
         (post.tags || []).join(' '),
+        post.category || '',
         post.content || ''
       ].join(' ');
       if (matchTerms(searchText, terms)) {
@@ -222,12 +254,14 @@
     if (!input || !resultsContainer) return;
     var params = new URLSearchParams(window.location.search);
     var queryParam = params.get('q');
-    if (queryParam) {
-      input.value = queryParam;
-    }
     input.addEventListener('input', onInput);
     input.addEventListener('keydown', onKeyDown);
-    loadIndex();
+    loadIndex(function () {
+      if (queryParam) {
+        input.value = queryParam;
+        doSearch(queryParam);
+      }
+    });
   }
 
   if (document.readyState === 'loading') {

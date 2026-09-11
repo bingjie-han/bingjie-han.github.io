@@ -1285,6 +1285,34 @@ main,
     padding: 1px 4px;
 }
 
+.search-result-head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.search-result-type {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 850;
+    letter-spacing: 0.04em;
+}
+
+.search-result-type.is-post {
+    color: var(--deep);
+    background: rgba(29, 143, 255, 0.12);
+    border: 1px solid rgba(29, 143, 255, 0.26);
+}
+
+.search-result-type.is-note {
+    color: #0a6b62;
+    background: rgba(26, 154, 154, 0.14);
+    border: 1px solid rgba(26, 154, 154, 0.32);
+}
+
 .search-result-item .post-card-tags {
     display: flex;
     flex-wrap: wrap;
