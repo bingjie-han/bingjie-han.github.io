@@ -915,19 +915,65 @@ main,
     gap: 18px;
     align-items: center;
     margin-top: 12px;
-    padding: 16px 18px;
+    padding: 16px 46px 16px 18px;
 }
 
-.archive-item span {
+.archive-date {
     color: var(--muted);
     font-size: 13px;
     font-weight: 800;
+}
+
+.archive-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .archive-item strong {
     font-family: var(--font-display);
     font-size: 24px;
     letter-spacing: -0.03em;
+}
+
+.archive-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.archive-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 0.04em;
+}
+
+.archive-badge.is-note {
+    background: rgba(29, 143, 255, 0.14);
+    color: var(--deep);
+}
+
+.archive-badge.is-post {
+    background: rgba(8, 59, 141, 0.12);
+    color: var(--teal);
+}
+
+.archive-cat {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.tag-count {
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 0.55em;
+    margin-left: 8px;
 }
 
 .keynote-frame {

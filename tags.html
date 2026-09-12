@@ -1,14 +1,14 @@
 ---
 title: Tags
 layout: default
-description: "按标签找到相似的文章。"
+description: "按标签找到相似的文章和笔记。"
 permalink: /tags/
 ---
 
 <section class="page-hero compact">
     <p class="eyebrow">Archive</p>
     <h1>Tags</h1>
-    <p class="hero-description">每个标签都是一条线索，把相关的想法串起来。</p>
+    <p class="hero-description">每个标签都是一条线索，把相关的文章与笔记串起来。</p>
 </section>
 
 <section class="content-shell">
@@ -21,11 +21,21 @@ permalink: /tags/
     <div class="tag-list">
         {% for tag in site.tags %}
         <section class="tag-section" id="{{ tag[0] | replace: ' ', '-' }}">
-            <h2>{{ tag[0] }}</h2>
-            {% for post in tag[1] %}
-            <a class="archive-item" href="{{ post.url | relative_url }}">
-                <span>{{ post.date | date: "%Y-%m-%d" }}</span>
-                <strong>{{ post.title }}</strong>
+            <h2>{{ tag[0] }} <span class="tag-count">{{ tag[1].size }}</span></h2>
+            {% for item in tag[1] %}
+            <a class="archive-item" href="{{ item.url | relative_url }}">
+                <span class="archive-date">{{ item.date | date: "%Y-%m-%d" }}</span>
+                <div class="archive-copy">
+                    <strong>{{ item.title }}</strong>
+                    <span class="archive-meta">
+                        {% if item.category %}
+                        <span class="archive-badge is-note">笔记</span>
+                        <span class="archive-cat">{{ item.category }}</span>
+                        {% else %}
+                        <span class="archive-badge is-post">文章</span>
+                        {% endif %}
+                    </span>
+                </div>
             </a>
             {% endfor %}
         </section>

@@ -103,9 +103,16 @@
     var isNote = post.type === 'note';
     var titleHighlighted = highlightMultiple(post.title, terms);
 
-    var excerptSource = post.subtitle || post.excerpt || '';
-    if (!excerptSource && post.content) {
-      excerptSource = buildSnippet(post.content, terms);
+    // 优先展示正文中命中关键词的片段（实现“搜索文章内容”），否则退回摘要/副标题。
+    var content = post.content || '';
+    var hasContentMatch = terms.some(function (t) {
+      return content.toLowerCase().indexOf(t) !== -1;
+    });
+    var excerptSource;
+    if (hasContentMatch) {
+      excerptSource = buildSnippet(content, terms);
+    } else {
+      excerptSource = post.subtitle || post.excerpt || (content ? content.substring(0, 160) : '');
     }
     var excerptHighlighted = highlightMultiple(excerptSource, terms);
     if (excerptHighlighted.length > 220) {
@@ -170,9 +177,10 @@
         '<p class="search-hint-tags">' +
           '试试: ' +
           '<a class="search-chip" href="?q=sql注入">sql注入</a>' +
+          '<a class="search-chip" href="?q=堆叠注入">堆叠注入</a>' +
           '<a class="search-chip" href="?q=文件上传">文件上传</a>' +
           '<a class="search-chip" href="?q=hackmyvm">hackmyvm</a>' +
-          '<a class="search-chip" href="?q=梦想">梦想</a>' +
+          '<a class="search-chip" href="?q=信息收集">信息收集</a>' +
         '</p>' +
       '</div>'
     );
