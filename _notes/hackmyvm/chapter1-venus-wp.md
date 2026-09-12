@@ -384,3 +384,117 @@ uvMwFDQrQWPMeGP
 
 ![[Pasted image 20260911123307.png]]
 
+习惯性cat一下dict.txt文件，没有发现东西反而找到了额外的flag：
+
+![[Pasted image 20260912164216.png]]
+
+既然他提示说dict.txt可以帮他找到文件，于是我们使用以下命令：
+
+```bash
+ while read word; do     find /etc/xdg -type f -iname "*${word}*" 2>/dev/null; done < dict.txt
+```
+
+这个表示去寻找路径`/etc/xdf/`下包含dict中的字符的文件，然而没有找到
+
+于是参考了一下褚师傅的博客[一个大佬的博客](https://daochunhan25.site/2026/08/29/hmvlabs-chapter-1-venus/#23-lucia-isabel)，看来这里是要直接读取内容，而不是仅寻找文件：
+
+```bash
+while IFS= read -r x; do cat "/etc/xdg/$x" 2>/dev/null; done < dict.txt
+```
+
+- x 是变量名
+- `IFS`：**Internal Field Separator（内部字段分隔符）**
+
+得到密码，进入下一关
+
+# lab24
+
+![[Pasted image 20260912165225.png]]
+
+使用如下命令：
+
+```bash
+ sort different.txt | uniq -u
+```
+
+得到密码。进入下一关
+
+# lab25
+
+![[Pasted image 20260912165824.png]]
+
+既然这个文件一分钟内存在一次又被删除，那就写一个代码来检查这个路径，一旦有新的a文件就输出其内容：
+
+```bash
+while true; do
+    for f in /free/*.txt; do
+        [ -f "$f" ] && cat "$f"
+    done
+    sleep 1
+done
+#mxq9O3MSxxX9Q3S
+```
+
+得到密码，进入下一关
+
+# lab26
+
+![[Pasted image 20260912170741.png]]
+
+上线了，刚开始以为要寻找ip。但是好像没有什么线索，于是直接：
+
+```bash
+curl -s http://localhost
+```
+
+得到密码。进入下一关
+
+# lab27
+
+![[Pasted image 20260912172301.png]]
+
+第一反应是寻找`tmp`文件夹下有没有什么内容
+
+然而没找到。
+
+然后又没有看到根目录下有什么内容，于是看看隐藏文件：
+
+![[Pasted image 20260912172359.png]]
+
+发现一个swp的文件，前面一段时间才学了这个swp是vim里一个可以恢复的文件
+
+于是使用以下命令：
+
+```bash
+vim -r ./.goas.swp
+```
+
+得到：
+
+![[Pasted image 20260912172650.png]]
+
+复原的内容：
+
+```
+Thats my little DIc with my old and current passw0rds:
+
+-->ppkJjqYvSCIyAhK
+-->cOXlRYXtJWnVQEG
+-->rxhKeFKveekqpwp
+-->RGBFMb7HZRgXZnu
+-->IaOpTdAuhSjGZnu
+-->NdnszvjulNellbK
+-->GBUguuSpXVjpxLc
+-->rSkPlPhymYcerMJ
+-->pEOppdORsqJZweH
+-->EKvJoTBYlwtwFmv
+-->d3LieOzRGX5wud6
+-->mYhQVLDKdJrsIwG
+-->DabEJLmAbOQxEnD
+-->LkWReDaaLCMDlLf
+-->cbjYGSVqAsqIvdg
+-->QsymOOVbzSaKmRm
+-->bnQgcXYamhSDSff
+-->VVjqJGRrnfKmcqg
+```
+
