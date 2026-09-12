@@ -42,6 +42,21 @@ collections:
   notes:
     output: true
     permalink: /notes/:path/
+
+# 为文章和笔记统一指定默认布局，保证以后新增的 .md（即使不带 front matter
+# 的 layout 字段）也能直接套用 post 布局，拥有正常的页面背景与排版。
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: post
+
 highlighter: rouge
 plugins:
   - jekyll-paginate
