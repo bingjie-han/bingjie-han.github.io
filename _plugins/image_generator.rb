@@ -11,29 +11,36 @@ module ObsidianImages
     priority :low
 
     def generate(site)
-      # Find all image files in _posts/imgs/ and _notes/imgs/, serving them at /imgs/
+      # Find all image files under any imgs/ directory (at any depth) inside
+      # _posts/ and _notes/, serving them at /imgs/filename.
+      #
+      # Notes are grouped in category subfolders (e.g. _notes/Tryhackme/imgs/,
+      # _notes/hackmyvm/imgs/), so we must recurse rather than only look at
+      # _notes/imgs/ and _posts/imgs/.
       image_extensions = %w[.png .jpg .jpeg .gif .svg .webp .bmp .ico]
       %w[_posts _notes].each do |collection_dir|
-        imgs_dir = File.join(site.source, collection_dir, 'imgs')
-        next unless Dir.exist?(imgs_dir)
+        base = File.join(site.source, collection_dir)
+        next unless Dir.exist?(base)
 
-        Dir.foreach(imgs_dir) do |filename|
-          next if filename == '.' || filename == '..'
-          next unless image_extensions.include?(File.extname(filename).downcase)
+        Dir.glob(File.join(base, '**', 'imgs')).each do |imgs_dir|
+          Dir.foreach(imgs_dir) do |filename|
+            next if filename == '.' || filename == '..'
+            next unless image_extensions.include?(File.extname(filename).downcase)
 
-          # Create a StaticFile that Jekyll will copy to _site/imgs/
-          static_file = Jekyll::StaticFile.new(
-            site,
-            imgs_dir,        # base directory
-            '',              # subdirectory within base
-            filename         # file name
-          )
-          # Override the destination to be /imgs/ instead of /_posts/imgs/ or /_notes/imgs/
-          def static_file.destination(dest)
-            File.join(dest, 'imgs', @name)
+            # Create a StaticFile that Jekyll will copy to _site/imgs/
+            static_file = Jekyll::StaticFile.new(
+              site,
+              imgs_dir,        # base directory
+              '',              # subdirectory within base
+              filename         # file name
+            )
+            # Override the destination to be /imgs/ instead of the source subfolder.
+            def static_file.destination(dest)
+              File.join(dest, 'imgs', @name)
+            end
+
+            site.static_files << static_file
           end
-
-          site.static_files << static_file
         end
       end
     end
