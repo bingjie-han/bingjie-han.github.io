@@ -1,0 +1,143 @@
+<!-- _includes/lightbox.html -->
+<!-- 图片查看器：点击正文里的任意图片即可放大查看，支持左右切换、Esc 关闭 -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片查看器" hidden>
+    <button class="lightbox-close" type="button" aria-label="关闭图片查看器" data-lightbox-close>&times;</button>
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="上一张图片" data-lightbox-prev>&lsaquo;</button>
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="下一张图片" data-lightbox-next>&rsaquo;</button>
+
+    <div class="lightbox-stage">
+        <img class="lightbox-image" alt="">
+    </div>
+
+    <p class="lightbox-caption"></p>
+    <p class="lightbox-counter" aria-hidden="true"></p>
+</div>
+
+<script>
+(function () {
+    var box = document.getElementById('lightbox');
+    if (!box) return;
+
+    var stage = box.querySelector('.lightbox-stage');
+    var image = box.querySelector('.lightbox-image');
+    var caption = box.querySelector('.lightbox-caption');
+    var counter = box.querySelector('.lightbox-counter');
+    var prevBtn = box.querySelector('[data-lightbox-prev]');
+    var nextBtn = box.querySelector('[data-lightbox-next]');
+    var closeBtn = box.querySelector('[data-lightbox-close]');
+
+    var group = [];
+    var index = 0;
+    var lastFocus = null;
+
+    // Obsidian 粘贴出来的图片名（Pasted image 20260927161413.png）当说明文字太吵，
+    // 只在 alt 是真正有意义的人话时才显示。
+    var PLACEHOLDER_ALT = /^pasted image \d+\.\w+$/i;
+    var IMAGE_NAME = /^[^\/\\]+\.(png|jpe?g|gif|webp|bmp|svg)$/i;
+
+    function captionFor(source) {
+        var alt = (source.alt || '').trim();
+        if (!alt || PLACEHOLDER_ALT.test(alt) || IMAGE_NAME.test(alt)) return '';
+        return alt;
+    }
+
+    function render() {
+        var source = group[index];
+        if (!source) return;
+
+        image.src = source.currentSrc || source.src;
+        image.alt = source.alt || '';
+        image.classList.remove('is-zoomed');
+
+        caption.textContent = captionFor(source);
+        counter.textContent = group.length > 1 ? (index + 1) + ' / ' + group.length : '';
+
+        var multiple = group.length > 1;
+        prevBtn.hidden = !multiple;
+        nextBtn.hidden = !multiple;
+    }
+
+    function open(source) {
+        var container = source.closest('.prose') || document.body;
+        group = Array.prototype.filter.call(container.querySelectorAll('img'), function (el) {
+            return !box.contains(el);
+        });
+        index = Math.max(0, group.indexOf(source));
+
+        lastFocus = source;
+        render();
+        box.hidden = false;
+        document.documentElement.classList.add('lightbox-open');
+        closeBtn.focus();
+    }
+
+    function close() {
+        box.hidden = true;
+        box.classList.remove('is-open');
+        document.documentElement.classList.remove('lightbox-open');
+        image.removeAttribute('src');
+        if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    function step(delta) {
+        if (group.length < 2) return;
+        index = (index + delta + group.length) % group.length;
+        render();
+    }
+
+    // 正文中的图片：可点击、可键盘聚焦
+    Array.prototype.forEach.call(document.querySelectorAll('.prose img'), function (el) {
+        if (box.contains(el)) return;
+        // 被链接包住的图片（[![...](...)](...)）保持原来的跳转行为，不接管
+        if (el.closest('a')) return;
+
+        el.classList.add('zoomable');
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('role', 'button');
+        el.setAttribute('aria-label', '放大查看图片' + (el.alt ? '：' + el.alt : ''));
+
+        el.addEventListener('click', function () { open(el); });
+        el.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+                event.preventDefault();
+                open(el);
+            }
+        });
+    });
+
+    // 点击遮罩空白处或关闭按钮 → 关闭；点击图片本身 → 原始尺寸 / 适应窗口切换
+    box.addEventListener('click', function (event) {
+        if (event.target.closest('[data-lightbox-close]')) { close(); return; }
+        if (event.target.closest('[data-lightbox-prev]')) { step(-1); return; }
+        if (event.target.closest('[data-lightbox-next]')) { step(1); return; }
+        if (event.target === image) { image.classList.toggle('is-zoomed'); return; }
+        if (event.target === box || event.target === stage) close();
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (box.hidden) return;
+
+        if (event.key === 'Escape') { close(); return; }
+        if (event.key === 'ArrowLeft') { step(-1); return; }
+        if (event.key === 'ArrowRight') { step(1); return; }
+
+        // 简单的焦点循环，避免 Tab 跑回页面正文
+        if (event.key === 'Tab') {
+            var focusable = Array.prototype.filter.call(
+                box.querySelectorAll('button'),
+                function (el) { return !el.hidden; }
+            );
+            if (!focusable.length) return;
+            var first = focusable[0];
+            var last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+    });
+})();
+</script>

@@ -670,6 +670,209 @@ main,
     box-shadow: var(--shadow);
 }
 
+/* 正文图片可点击放大 */
+.prose img.zoomable {
+    cursor: zoom-in;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.prose img.zoomable:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 30px 80px rgba(13, 71, 161, 0.26);
+}
+
+.prose img.zoomable:focus-visible {
+    outline: 3px solid var(--teal);
+    outline-offset: 4px;
+}
+
+/* 图片查看器 */
+html.lightbox-open,
+html.lightbox-open body {
+    overflow: hidden;
+}
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 28px 76px;
+    background: rgba(6, 22, 47, 0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    animation: lightbox-fade 0.22s ease both;
+}
+
+.lightbox[hidden] {
+    display: none;
+}
+
+@keyframes lightbox-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.lightbox-stage {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 100%;
+    /* margin:auto 而不是纯居中，放大后超出容器时仍能滚动看到左上角 */
+    margin: auto;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+    cursor: zoom-in;
+    animation: lightbox-pop 0.24s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+.lightbox-image.is-zoomed {
+    max-width: none;
+    max-height: none;
+    cursor: zoom-out;
+    animation: none;
+}
+
+@keyframes lightbox-pop {
+    from { opacity: 0; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-close,
+.lightbox-nav {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 50%;
+    color: #f2fbff;
+    background: rgba(255, 255, 255, 0.12);
+    font-family: var(--font-body);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.26);
+}
+
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 3px;
+}
+
+.lightbox-close {
+    top: 22px;
+    right: 22px;
+    font-size: 30px;
+}
+
+.lightbox-nav {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 34px;
+}
+
+.lightbox-nav:hover {
+    transform: translateY(-50%) scale(1.06);
+}
+
+.lightbox-nav[hidden] {
+    display: none;
+}
+
+.lightbox-prev { left: 18px; }
+.lightbox-next { right: 18px; }
+
+.lightbox-caption,
+.lightbox-counter {
+    max-width: min(880px, 100%);
+    margin: 0;
+    color: rgba(235, 248, 255, 0.86);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-align: center;
+    word-break: break-all;
+}
+
+.lightbox-caption:empty,
+.lightbox-counter:empty {
+    display: none;
+}
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: rgba(235, 248, 255, 0.6);
+}
+
+@media (max-width: 720px) {
+    .lightbox {
+        padding: 18px 16px 32px;
+    }
+
+    .lightbox-close {
+        top: 12px;
+        right: 12px;
+    }
+
+    .lightbox-nav {
+        top: auto;
+        bottom: 16px;
+        transform: none;
+        width: 42px;
+        height: 42px;
+    }
+
+    .lightbox-nav:hover {
+        transform: none;
+    }
+
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+
+    .lightbox-counter {
+        bottom: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lightbox,
+    .lightbox-image {
+        animation: none;
+    }
+
+    .prose img.zoomable:hover {
+        transform: none;
+    }
+}
+
 .post-pager {
     max-width: 780px;
     margin-inline: auto;

