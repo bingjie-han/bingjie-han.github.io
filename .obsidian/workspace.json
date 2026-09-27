@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_notes/ctf的wp/NSSCTF-CISCN-web11.md",
+                "file": "_notes/ctf的wp/ez_sql.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "NSSCTF-CISCN-web11"
+              "title": "ez_sql"
             }
           }
         ]
@@ -96,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_notes/ctf的wp/NSSCTF-CISCN-web11.md",
+                "file": "_notes/ctf的wp/ez_sql.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -186,31 +186,38 @@
   },
   "active": "fec061372401ef5d",
   "lastOpenFiles": [
-    "_notes/ctf的wp/imgs/Pasted image 20260921191526.png",
-    "_notes/ctf的wp/imgs/Pasted image 20260921190651.png",
-    "_notes/ctf的wp/imgs/Pasted image 20260921190630.png",
-    "_notes/ctf的wp/imgs/Pasted image 20260921185735.png",
-    "_notes/ctf的wp/imgs",
+    "_notes/ctf的wp/imgs/Pasted image 20260927162903.png",
+    "_notes/ctf的wp/imgs/Pasted image 20260927162405.png",
+    "_notes/ctf的wp/imgs/Pasted image 20260927162018.png",
+    "_notes/ctf的wp/imgs/Pasted image 20260927161413.png",
     "_notes/SQL注入/sql基础学习-sqli-lab.md",
+    "_notes/ctf的wp/ez_sql.md",
+    "_notes/makesec/Cuan.md",
+    "_notes/makesec/imgs/Pasted image 20260924163654.png",
+    "_notes/makesec/imgs/Pasted image 20260924161526.png",
+    "_notes/makesec/imgs/Pasted image 20260924161422.png",
+    "_notes/makesec/imgs/Pasted image 20260924132336.png",
+    "_notes/makesec/imgs/Pasted image 20260924130925.png",
+    "_notes/makesec/imgs/Pasted image 20260924130645.png",
+    "_notes/makesec/imgs/Pasted image 20260924130420.png",
+    "_notes/ctf的wp/warmup-wp.md",
+    "_notes/ctf的wp/checkin.md",
+    "_notes/ctf的wp/ez_ez_unserialize.md",
+    "_notes/ctf的wp/GKCTF-CVE版签到.md",
+    "_notes/makesec/Gameshell5.md",
+    "_notes/ctf的wp/GDOUCTF-EZ-WEB.md",
     "_notes/ctf的wp/NSSCTF-CISCN-web11.md",
+    "_notes/ctf的wp/imgs",
     "index.html.tmp.14784.a05ae0921910",
     "README.md",
     "_notes/ctf的wp/NSSCTF-Middle-Magic.md",
     "_notes/ctf的wp/NSSCTF-EasyP-wp.md",
     "_notes/ctf的wp/新生赛uploadandinject的wp.md",
     "_notes/hackmyvm/chapter1-venus-wp.md",
-    "_notes/makesec/Gameshell5.md",
     "_notes/SQL注入/堆叠注入.md",
     "_notes/Tryhackme/Medium-challenges：The Guestbook.md",
     "_notes/Tryhackme/Easy-learn：OverheardatBreakfast.md",
     "_notes/hackmyvm/web专题靶机：Casino.md",
-    "_notes/makesec/imgs/Pasted image 20260915140914.png",
-    "_notes/makesec/imgs/Pasted image 20260915140121.png",
-    "_notes/makesec/imgs/Pasted image 20260915111051.png",
-    "_notes/makesec/imgs/Pasted image 20260915110543.png",
-    "_notes/makesec/imgs/Pasted image 20260915105114.png",
-    "_notes/makesec/imgs/Pasted image 20260915104358.png",
-    "_notes/makesec/imgs/Pasted image 20260915103502.png",
     "_notes/makesec/imgs",
     "_notes/makesec",
     "_notes/未命名.md",
@@ -224,10 +231,6 @@
     "_posts/2025-04-06-fear-and-dreams.md",
     "_posts/2026-9-9-新生赛uploadandinject的wp.md",
     "_posts/2026-07-28-sql基础学习-sqli-lab.md",
-    "_posts/imgs/2026-9-9.md",
-    "_posts/2026-8-14-堆叠注入.md",
-    "_posts/2026-01-22-fear-and-dreams.md",
-    "_posts/sql基础学习-sqli hub.md",
-    "_posts/2026-04-16-welcome-to-ice-blog.md"
+    "_posts/imgs/2026-9-9.md"
   ]
 }
