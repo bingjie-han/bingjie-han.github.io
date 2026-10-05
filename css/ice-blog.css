@@ -2092,7 +2092,7 @@ body::before, body::after { display: none; }
 .brand-mark { background: #286cae; box-shadow: none; }
 .nav-links a.is-active { color: #215f99; background: #eaf2fb; }
 .home-hero { padding: 72px 0 24px; gap: 64px; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .8fr); }
-.home-hero .home-title { font-family: var(--font-body); font-size: clamp(42px, 5.5vw, 72px); line-height: 1.28; letter-spacing: -.045em; font-weight: 800; }
+.home-hero .home-title { font-family: var(--font-display); font-size: clamp(56px, 9vw, 120px); line-height: 1.2; letter-spacing: -.055em; font-weight: 800; }
 .home-title span { color: var(--teal); }
 .home-hero .hero-description { font-size: 17px; line-height: 1.95; }
 .hero-card { padding: 28px; background: #eaf1f8; border: 1px solid #d8e4ef; box-shadow: none; }
@@ -2138,4 +2138,17 @@ body::before, body::after { display: none; }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Use a centered, outlined snowflake on devices with a precise pointer. */
+@media (hover: hover) and (pointer: fine) {
+    html, body, body * {
+        cursor: url('/img/snowflake-cursor.svg') 16 16, auto !important;
+    }
+    a, a *, button, button *, summary, summary *, [role="button"] {
+        cursor: url('/img/snowflake-cursor.svg') 16 16, pointer !important;
+    }
+    input, textarea, [contenteditable="true"] {
+        cursor: text !important;
+    }
 }

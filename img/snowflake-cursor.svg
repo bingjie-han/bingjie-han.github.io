@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <path id="flake" d="M16 3v26M4.74 9.5l22.52 13M4.74 22.5l22.52-13M12 6l4 4 4-4M12 26l4-4 4 4M5.34 14.46l5.46-1.46-1.46-5.46M22.66 24.46L21.2 19l5.46-1.46M5.34 17.54L10.8 19l-1.46 5.46M22.66 7.54L21.2 13l5.46 1.46"/>
+  </defs>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#flake" stroke="#fff" stroke-width="4"/>
+    <use href="#flake" stroke="#286cae" stroke-width="1.8"/>
+  </g>
+</svg>
