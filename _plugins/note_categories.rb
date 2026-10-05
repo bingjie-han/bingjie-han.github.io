@@ -12,5 +12,6 @@ Jekyll::Hooks.register :site, :post_read do |site|
     rel = doc.relative_path.to_s.tr('\\', '/').sub(%r{^_notes/}, '')
     parts = rel.split('/')
     doc.data['category'] = parts.size >= 2 ? parts[0] : '未分类'
+    doc.data['subcategory'] = parts.size >= 3 ? parts[1...-1].join(' / ') : ''
   end
 end

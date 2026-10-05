@@ -32,8 +32,19 @@ permalink: /notes/
                 <span class="note-folder-chevron" aria-hidden="true"></span>
             </summary>
             <div class="note-folder-body">
+                {% assign subgroups = group.items | group_by: 'subcategory' | sort: 'name' %}
+                {% for subgroup in subgroups %}
+                {% if subgroup.name != empty %}
+                <details class="note-subfolder">
+                    <summary class="note-folder-head">
+                        <span class="note-folder-icon" aria-hidden="true">📁</span>
+                        <span class="note-folder-name">{{ subgroup.name }}</span>
+                        <span class="note-count">{{ subgroup.items.size }}</span>
+                        <span class="note-folder-chevron" aria-hidden="true"></span>
+                    </summary>
+                {% endif %}
                 <div class="note-list">
-                    {% for note in group.items %}
+                    {% for note in subgroup.items %}
                     <a class="note-row reveal" href="{{ note.url | relative_url }}">
                         <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%Y.%m.%d" }}</time>
                         <div class="note-row-copy">
@@ -44,6 +55,8 @@ permalink: /notes/
                     </a>
                     {% endfor %}
                 </div>
+                {% if subgroup.name != empty %}</details>{% endif %}
+                {% endfor %}
             </div>
         </details>
         {% endfor %}
