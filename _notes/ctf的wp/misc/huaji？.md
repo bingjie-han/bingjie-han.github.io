@@ -2,6 +2,7 @@
 date: 2026-10-05 21:00
 author: 冰冰洁
 title: "huaji？：图片隐写分析"
+permalink: /notes/ctf/misc/huaji/
 tags:
   - "#图片隐写"
 ---
