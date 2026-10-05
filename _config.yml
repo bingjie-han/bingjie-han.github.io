@@ -6,6 +6,7 @@ email: icejie_pingan@qq.com
 description: "随便写写"
 keyword: "韩冰洁, Ice Blog, 个人博客, Jekyll"
 lang: zh-CN
+timezone: Asia/Shanghai
 url: "https://bingjie-han.github.io"
 baseurl: ""
 github_repo: "https://github.com/bingjie-han/bingjie-han.github.io"
