@@ -17,15 +17,15 @@ sidebar-about-description: "過過過什么都過"
 
 # Navigation
 nav:
-  - title: Home
+  - title: 首页
     url: /
   - title: 学习笔记
     url: /notes/
-  - title: Blog
+  - title: 生活随笔
     url: /blog/
-  - title: Tags
+  - title: 标签
     url: /tags/
-  - title: Search
+  - title: 搜索
     url: /search/
 
 # Social links

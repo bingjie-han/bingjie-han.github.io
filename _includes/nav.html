@@ -9,7 +9,10 @@
     </button>
     <div class="nav-links" id="site-menu">
         {% for item in site.nav %}
-        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        {% assign active = false %}
+        {% if page.url == item.url %}{% assign active = true %}{% endif %}
+        {% if item.url == '/notes/' and page.collection == 'notes' %}{% assign active = true %}{% endif %}
+        <a href="{{ item.url | relative_url }}"{% if active %} class="is-active" aria-current="page"{% endif %}>{{ item.title }}</a>
         {% endfor %}
     </div>
 </nav>

@@ -5,22 +5,22 @@ description: "这里是冰冰洁的个人博客。"
 
 <section class="home-hero">
     <div class="hero-copy reveal">
-        <p class="eyebrow">Blue notes, bright days</p>
-        <h1 class="welcome-title">Welcome</h1>
-        <p class="hero-description">这里是冰冰洁的个人博客。</p>
+        <p class="eyebrow">ICE BLOG / 学习与生活的切片</p>
+        <h1 class="home-title">保持好奇，<br>慢慢<span>积累。</span></h1>
+        <p class="hero-description">你好，我是冰冰洁。<br>在这里记录安全学习、解题思路，以及生活里值得留下的小事。</p>
         <div class="hero-actions">
-            <a class="button primary" href="{{ '/blog/' | relative_url }}">进入博客</a>
-            <a class="button ghost" href="{{ '/notes/' | relative_url }}">学习笔记</a>
+            <a class="button primary" href="{{ '/notes/' | relative_url }}">探索学习笔记 →</a>
+            <a class="button ghost" href="{{ '/blog/' | relative_url }}">阅读生活随笔</a>
         </div>
     </div>
     <aside class="hero-card reveal delay-1" aria-label="Profile card">
         <img class="avatar" src="{{ site.avatar | relative_url }}" alt="{{ site.author }} 的头像">
-        <p class="card-kicker">{{ site.title }}</p>
+        <p class="card-kicker">A LITTLE ABOUT ME</p>
         <h2>{{ site.sidebar-about-description }}</h2>
         <div class="mini-stats">
-            <span><strong>{{ site.posts | size }}</strong> Posts</span>
-            <span><strong>{{ site.notes | size }}</strong> Notes</span>
-            <span><strong>{{ site.tags | size }}</strong> Tags</span>
+            <span><strong>{{ site.posts | size }}</strong> 随笔</span>
+            <span><strong>{{ site.notes | size }}</strong> 笔记</span>
+            <span><strong>{{ site.tags | size }}</strong> 标签</span>
         </div>
     </aside>
 </section>
