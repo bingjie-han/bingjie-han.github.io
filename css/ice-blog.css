@@ -2086,7 +2086,7 @@ html.lightbox-open body {
     --radius-lg: 24px;
     --radius-md: 16px;
 }
-body { background: #eaf5ff; }
+body { background: linear-gradient(135deg, #dcefff 0%, #c5e4ff 55%, #aed6fb 100%); }
 body::before, body::after { display: none; }
 .site-nav { top: 12px; padding: 10px 16px; border: 1px solid var(--line); background: rgba(255,255,255,.94); box-shadow: 0 8px 30px #213f6510; }
 .brand-mark { background: #286cae; box-shadow: none; }
@@ -2181,15 +2181,40 @@ body::before, body::after { display: none; }
 /* Homepage title interaction and light code palette. */
 .home-title {
     display: inline-block;
+    position: relative;
     transform-origin: left center;
     transition: transform .35s ease, color .35s ease, text-shadow .35s ease;
 }
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-    .home-title:hover {
-        transform: scale(1.06) translateY(-4px);
-        color: #286cae;
-        text-shadow: 0 0 24px #83c9ff99, 0 12px 36px #286cae33;
-    }
+.home-hero .home-title:hover,
+.home-hero .home-title:focus-visible {
+    transform: scale(1.09) translateY(-6px);
+    color: #1479d4;
+    text-shadow: 0 0 16px #ffffff, 0 0 38px #409fffaa, 0 16px 38px #1b75c64d;
+}
+.home-title::after {
+    content: "";
+    position: absolute;
+    left: 2%;
+    bottom: 0;
+    width: 96%;
+    height: 5px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #2387e9, #ffffff, #2387e9);
+    background-size: 200% 100%;
+    box-shadow: 0 0 18px #389bff;
+    opacity: 0;
+    transform: scaleX(.2);
+    transition: opacity .3s ease, transform .35s ease;
+    pointer-events: none;
+}
+.home-title:hover::after, .home-title:focus-visible::after {
+    opacity: 1;
+    transform: scaleX(1);
+    animation: welcome-glow 1.4s linear infinite;
+}
+@keyframes welcome-glow { to { background-position: 200% 0; } }
+@media (prefers-reduced-motion: reduce) {
+    .home-hero .home-title:hover, .home-hero .home-title:focus-visible { transform: none; }
 }
 .prose pre, .highlight pre { border-color: #eadca7; }
 .prose pre code { padding: 0; border-radius: 0; background: transparent; color: inherit; }
