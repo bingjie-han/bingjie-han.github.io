@@ -2231,3 +2231,68 @@ body::before, body::after { display: none; }
 @media (max-width: 520px) {
     .home-hero .home-title { font-size: clamp(56px, 15vw, 78px); }
 }
+
+/* Frosted winter sky, distant snowbanks, and drifting snow. */
+body {
+    isolation: isolate;
+    background: #c4e3fa;
+}
+.winter-scene {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 16% 12%, #ffffffd9, transparent 43%),
+        radial-gradient(ellipse at 85% 55%, #e9faffb3, transparent 45%),
+        linear-gradient(165deg, #9fc9eb, #c4e7fa 48%, #e8f5ff);
+}
+.winter-scene::before, .winter-scene::after {
+    content: "";
+    position: absolute;
+    width: 140%;
+    left: -20%;
+    height: 32vh;
+    bottom: -18vh;
+    border-radius: 50% 60% 0 0;
+    background: #ffffffbd;
+    box-shadow: 0 -15px 65px #ffffff99;
+    transform: rotate(-7deg);
+}
+.winter-scene::after { bottom: -23vh; transform: rotate(9deg); background: #f7fcff; }
+.winter-snow { position: absolute; inset: 0; }
+.winter-flake {
+    position: absolute;
+    top: -40px;
+    color: #fff;
+    opacity: .85;
+    text-shadow: 0 0 5px #ffffff, 0 1px 4px #649dc066;
+    animation: winter-fall linear infinite;
+}
+@keyframes winter-fall {
+    from { transform: translate3d(-20px, -40px, 0) rotate(0deg); }
+    to { transform: translate3d(65px, calc(100vh + 80px), 0) rotate(180deg); }
+}
+.hero-card { background: linear-gradient(135deg, #f6fcffe6, #dbedfac9); border-color: #fff; box-shadow: inset 0 1px 18px #fff, 0 16px 48px #426c8d14; }
+.home-hero .home-title { transform-origin: center; transition: transform .18s ease-out, filter .25s ease, text-shadow .25s ease; }
+.home-hero .home-title.is-tracking {
+    color: transparent;
+    background: radial-gradient(circle at var(--ice-x, 50%) var(--ice-y, 50%), #fff 0%, #a7e7ff 14%, #2580bd 36%, #163958 74%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    transform: perspective(800px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1.06);
+    text-shadow: none;
+    filter: drop-shadow(0 8px 14px #3679ae40);
+}
+.home-title.is-tracking::after {
+    opacity: 1;
+    transform: scaleX(1);
+    animation: none;
+    background: radial-gradient(ellipse at var(--ice-x, 50%) center, #fff, #79ceff 25%, transparent 72%);
+}
+@media (max-width: 600px) { .winter-flake:nth-child(2n) { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+    .winter-snow { display: none; }
+    .home-hero .home-title { transition: none; }
+}
