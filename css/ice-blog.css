@@ -2120,7 +2120,11 @@ body::before, body::after { display: none; }
 .prose img { border-radius: 12px; }
 .note-folder { background: #fff; border: 1px solid var(--line); box-shadow: none; }
 .note-folder-head { padding: 22px; }
-.footer-card { background: #eaf1f8; box-shadow: none; border: 1px solid var(--line); }
+.footer-card { background: #c8e3f7; color: #173d5c; box-shadow: none; border: 1px solid #9cc7e7; }
+.footer-card .footer-kicker { color: #346386; }
+.footer-card .footer-links a { color: #174e78; background: #e8f4fd; border-color: #83b3d6; transition: background .2s ease, color .2s ease; }
+.footer-card .footer-links a:hover,
+.footer-card .footer-links a:focus-visible { color: #fff; background: #245f8d; border-color: #245f8d; }
 :focus-visible { outline: 3px solid #286cae; outline-offset: 4px; }
 @media (max-width: 860px) {
     .home-hero { grid-template-columns: 1fr; gap: 28px; padding-top: 42px; }
