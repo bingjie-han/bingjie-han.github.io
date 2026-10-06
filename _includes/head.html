@@ -7,11 +7,11 @@
     <meta name="author" content="{{ site.author }}">
     <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
 
-    <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.SEOTitle | default: site.title }}{% endif %}</title>
+    <title>blog</title>
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
     <link rel="manifest" href="{{ '/pwa/manifest.json' | relative_url }}">
-    <link rel="icon" href="{{ '/img/2.png' | relative_url }}" type="image/png">
-    <link rel="shortcut icon" href="{{ '/img/2.png' | relative_url }}" type="image/png">
+    <link rel="icon" href="{{ '/img/snowflake.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="shortcut icon" href="{{ '/img/snowflake.svg' | relative_url }}" type="image/svg+xml">
     <link rel="apple-touch-icon" href="{{ '/img/2.png' | relative_url }}">
     <link rel="stylesheet" href="{{ '/css/ice-blog.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
