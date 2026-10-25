@@ -27,13 +27,14 @@ description: "这里是冰冰洁的个人博客。"
 <section class="content-shell">
     <div class="section-heading">
         <div>
-            <p class="eyebrow">Latest</p>
-            <h2>最近文章</h2>
+            <p class="eyebrow">Recently Uploaded</p>
+            <h2>最近上传</h2>
         </div>
     </div>
 
     <div class="post-grid">
-        {% for post in paginator.posts %}
+        {% assign recent_posts = site.posts | sort: 'date' | reverse %}
+        {% for post in recent_posts %}
         <article class="post-card reveal">
             <a href="{{ post.url | relative_url }}">
                 <div class="post-card-meta">{{ post.date | date: "%Y-%m-%d" }} · {{ post.author | default: site.author }}</div>
@@ -52,13 +53,6 @@ description: "这里是冰冰洁的个人博客。"
         {% endfor %}
     </div>
 
-    {% if paginator.total_pages > 1 %}
-    <nav class="pagination" aria-label="Pagination">
-        {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">Newer</a>{% endif %}
-        <span>Page {{ paginator.page }} / {{ paginator.total_pages }}</span>
-        {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">Older</a>{% endif %}
-    </nav>
-    {% endif %}
 </section>
 
 <section class="content-shell">
