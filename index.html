@@ -34,7 +34,7 @@ description: "这里是冰冰洁的个人博客。"
 
     <div class="post-grid">
         {% assign recent_uploads = site.posts | concat: site.notes | sort: 'date' | reverse %}
-        {% for post in recent_uploads %}
+        {% for post in recent_uploads limit:2 %}
         <article class="post-card reveal">
             <a href="{{ post.url | relative_url }}">
                 <div class="post-card-meta">{{ post.date | date: "%Y-%m-%d" }} · {{ post.author | default: site.author }}</div>
