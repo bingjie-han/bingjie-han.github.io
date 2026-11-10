@@ -2279,6 +2279,27 @@ body {
     to { transform: translate3d(65px, calc(100vh + 80px), 0) rotate(180deg); }
 }
 .hero-card { background: linear-gradient(135deg, #f6fcffe6, #dbedfac9); border-color: #fff; box-shadow: inset 0 1px 18px #fff, 0 16px 48px #426c8d14; }
+.mini-stats > a {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 10px;
+    border-radius: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+.mini-stats > a strong { transition: color .2s ease, transform .2s ease; }
+.mini-stats > a:hover,
+.mini-stats > a:focus-visible {
+    transform: translateY(-3px);
+    background: #ffffffa8;
+    box-shadow: 0 8px 20px #286cae18;
+}
+.mini-stats > a:hover strong,
+.mini-stats > a:focus-visible strong { color: #286cae; transform: scale(1.06); }
+.mini-stats > a:active { transform: translateY(-1px); }
 .home-hero .home-title { transform-origin: center; transition: transform .18s ease-out, filter .25s ease, text-shadow .25s ease; }
 .home-hero .home-title.is-tracking {
     color: transparent;

@@ -17,9 +17,15 @@ description: "这里是冰冰洁的个人博客。"
         <p class="card-kicker">A LITTLE ABOUT ME</p>
         <h2>{{ site.sidebar-about-description }}</h2>
         <div class="mini-stats">
-            <span><strong>{{ site.posts | size }}</strong> 随笔</span>
-            <span><strong>{{ site.notes | size }}</strong> 笔记</span>
-            <span><strong>{{ site.tags | size }}</strong> 标签</span>
+            <a href="{{ '/blog/' | relative_url }}" aria-label="浏览全部随笔，共 {{ site.posts | size }} 篇">
+                <strong>{{ site.posts | size }}</strong><span>随笔</span>
+            </a>
+            <a href="{{ '/notes/' | relative_url }}" aria-label="浏览全部学习笔记，共 {{ site.notes | size }} 篇">
+                <strong>{{ site.notes | size }}</strong><span>笔记</span>
+            </a>
+            <a href="{{ '/tags/' | relative_url }}" aria-label="浏览全部标签，共 {{ site.tags | size }} 个">
+                <strong>{{ site.tags | size }}</strong><span>标签</span>
+            </a>
         </div>
     </aside>
 </section>
