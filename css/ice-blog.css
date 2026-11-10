@@ -2285,20 +2285,23 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding: 8px 10px;
+    border: 1px solid transparent;
     border-radius: 12px;
     color: var(--muted);
     text-decoration: none;
-    transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+    transition: transform .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 .mini-stats > a strong { transition: color .2s ease, transform .2s ease; }
 .mini-stats > a:hover,
 .mini-stats > a:focus-visible {
-    transform: translateY(-3px);
-    background: #ffffffa8;
-    box-shadow: 0 8px 20px #286cae18;
+    transform: translateY(-4px);
+    border-color: #c5def3;
+    background: #fff;
+    box-shadow: 0 10px 24px #286cae24;
 }
 .mini-stats > a:hover strong,
 .mini-stats > a:focus-visible strong { color: #286cae; transform: scale(1.06); }
+.mini-stats > a:focus-visible { outline: 3px solid #286cae66; outline-offset: 2px; }
 .mini-stats > a:active { transform: translateY(-1px); }
 .home-hero .home-title { transform-origin: center; transition: transform .18s ease-out, filter .25s ease, text-shadow .25s ease; }
 .home-hero .home-title.is-tracking {
