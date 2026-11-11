@@ -30,7 +30,7 @@ description: "这里是冰冰洁的个人博客。"
     </aside>
 </section>
 
-<section class="content-shell">
+<section class="content-shell home-section home-recent">
     <div class="section-heading">
         <div>
             <p class="eyebrow">Recently Uploaded</p>
@@ -61,7 +61,38 @@ description: "这里是冰冰洁的个人博客。"
 
 </section>
 
-<section class="content-shell">
+<section class="content-shell home-section home-articles">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Articles</p>
+            <h2>文章</h2>
+        </div>
+        <a class="button ghost" href="{{ '/blog/' | relative_url }}">全部文章</a>
+    </div>
+
+    <div class="post-grid">
+        {% assign recent_articles = site.posts | sort: 'date' | reverse %}
+        {% for post in recent_articles limit:4 %}
+        <article class="post-card reveal">
+            <a href="{{ post.url | relative_url }}">
+                <div class="post-card-meta">{{ post.date | date: "%Y-%m-%d" }} · {{ post.author | default: site.author }}</div>
+                <h3>{{ post.title }}</h3>
+                {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% else %}<p>{{ post.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>{% endif %}
+                <div class="post-card-tags">
+                    {% for tag in post.tags limit:3 %}<span>{{ tag }}</span>{% endfor %}
+                </div>
+            </a>
+        </article>
+        {% else %}
+        <article class="empty-state">
+            <h3>还没有文章</h3>
+            <p>在 `_posts` 目录添加 Markdown 文件后，文章会显示在这里。</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="content-shell home-section home-study-notes">
     <div class="section-heading">
         <div>
             <p class="eyebrow">Study Notes</p>
@@ -87,3 +118,5 @@ description: "这里是冰冰洁的个人博客。"
         {% endfor %}
     </div>
 </section>
+
+<script src="{{ '/js/home-profile-follow.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

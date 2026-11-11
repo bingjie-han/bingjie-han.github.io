@@ -2106,9 +2106,20 @@ body::before, body::after { display: none; }
     transition: color .22s ease, transform .22s ease, text-shadow .22s ease;
 }
 .hero-card h2:hover {
-    transform: translateY(-3px) scale(1.02);
     color: #286cae;
     text-shadow: 0 8px 22px #286cae24;
+}
+.hero-card h2.is-following {
+    transform: translate3d(var(--follow-x, 0px), var(--follow-y, 0px), 0)
+        perspective(500px) rotateX(var(--follow-rotate-x, 0deg))
+        rotateY(var(--follow-rotate-y, 0deg)) scale(1.02);
+    color: #286cae;
+    text-shadow: 0 8px 22px #286cae24;
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-card h2,
+    .hero-card h2:hover,
+    .hero-card h2.is-following { transition: none; transform: none; }
 }
 .mini-stats { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 6px; padding-top: 20px; border-top: 1px solid #d1dfec; }
 .mini-stats span { padding: 0; border: 0; background: none; }
