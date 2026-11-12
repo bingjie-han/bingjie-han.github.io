@@ -600,6 +600,33 @@ main,
     color: #31464d;
 }
 
+/* Wide Markdown tables should remain readable without stretching the page. */
+.post-content table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 24px 0;
+    font-size: 0.88em;
+}
+
+.post-content th,
+.post-content td {
+    min-width: 120px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+}
+
+.post-content th {
+    background: #eaf3fa;
+    color: var(--ink-strong);
+    font-weight: 800;
+}
+
 .prose a {
     color: var(--teal);
     font-weight: 850;
