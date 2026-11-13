@@ -15,36 +15,37 @@
         }
         snow.appendChild(fragment);
     }
-    var area = document.querySelector('.hero-copy');
-    var title = document.querySelector('.home-title');
-    if (!area || !title) return;
-    var frame = 0;
-    var point;
-    function reset() {
-        cancelAnimationFrame(frame);
-        frame = 0;
-        title.classList.remove('is-tracking');
-        ['--ice-x', '--ice-y', '--tilt-x', '--tilt-y'].forEach(function (name) {
-            title.style.removeProperty(name);
-        });
-    }
-    area.addEventListener('pointermove', function (event) {
-        if (reduced.matches || event.pointerType === 'touch') return;
-        point = { x: event.clientX, y: event.clientY };
-        if (frame) return;
-        frame = requestAnimationFrame(function () {
+    var titles = document.querySelectorAll('.ice-title');
+    titles.forEach(function (title) {
+        var area = title.closest('.hero-copy, .blog-hero-copy, .page-hero') || title;
+        var frame = 0;
+        var point;
+        function reset() {
+            cancelAnimationFrame(frame);
             frame = 0;
-            var box = area.getBoundingClientRect();
-            var x = Math.max(0, Math.min(1, (point.x - box.left) / box.width));
-            var y = Math.max(0, Math.min(1, (point.y - box.top) / box.height));
-            title.style.setProperty('--ice-x', (x * 100) + '%');
-            title.style.setProperty('--ice-y', (y * 100) + '%');
-            title.style.setProperty('--tilt-x', ((.5 - y) * 12) + 'deg');
-            title.style.setProperty('--tilt-y', ((x - .5) * 16) + 'deg');
-            title.classList.add('is-tracking');
-        });
-    }, { passive: true });
-    area.addEventListener('pointerleave', reset);
-    window.addEventListener('blur', reset);
-    reduced.addEventListener('change', reset);
+            title.classList.remove('is-tracking');
+            ['--ice-x', '--ice-y', '--tilt-x', '--tilt-y'].forEach(function (name) {
+                title.style.removeProperty(name);
+            });
+        }
+        area.addEventListener('pointermove', function (event) {
+            if (reduced.matches || event.pointerType === 'touch') return;
+            point = { x: event.clientX, y: event.clientY };
+            if (frame) return;
+            frame = requestAnimationFrame(function () {
+                frame = 0;
+                var box = title.classList.contains('home-title') ? area.getBoundingClientRect() : title.getBoundingClientRect();
+                var x = Math.max(0, Math.min(1, (point.x - box.left) / box.width));
+                var y = Math.max(0, Math.min(1, (point.y - box.top) / box.height));
+                title.style.setProperty('--ice-x', (x * 100) + '%');
+                title.style.setProperty('--ice-y', (y * 100) + '%');
+                title.style.setProperty('--tilt-x', ((.5 - y) * 12) + 'deg');
+                title.style.setProperty('--tilt-y', ((x - .5) * 16) + 'deg');
+                title.classList.add('is-tracking');
+            });
+        }, { passive: true });
+        area.addEventListener('pointerleave', reset);
+        window.addEventListener('blur', reset);
+        reduced.addEventListener('change', reset);
+    });
 })();
